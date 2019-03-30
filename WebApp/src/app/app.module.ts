@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { EstadoComponent } from './cadastros/estado/estado.component';
 import { CidadeComponent } from './cadastros/cidade/cidade.component';
 import { PagenotfoundComponent } from './erros/pagenotfound/pagenotfound.component';
+import { FreteComponent } from './cadastros/frete/frete.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EstadoComponent,
     CidadeComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    FreteComponent
   ],
   imports: [
     BrowserModule,
