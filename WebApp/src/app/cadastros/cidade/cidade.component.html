@@ -1,3 +1,63 @@
-<p>
-  cidade works!
-</p>
+<div class="row">
+  <div class="col s12 m3 l3">
+    <mat-accordion>
+      <mat-expansion-panel name="panelCadastros" [expanded]="isExpandido === 1" (opened)="setExpandido()">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Cadastro de Cidades</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="row">
+          <div class="col s12 m2 l2">
+            <mat-form-field> 
+              <!-- matInput: tipo de dado que o campo vai receber-->
+              <input matInput="text" placeholder="Campo 1"/>
+            </mat-form-field>
+          </div>
+          <div class="col s12 m2 l2">
+              <mat-form-field> 
+                <!-- matInput: tipo de dado que o campo vai receber-->
+                <input matInput="date" placeholder="Data 1"/>
+              </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m2 l2">
+              <!---->
+              <mat-form-field> 
+                <!-- matInput: tipo de dado que o campo vai receber-->
+                <input matInput="text" placeholder="Campo 2"/>
+              </mat-form-field>
+            </div>
+            <div class="col s12 m2 l2">
+                <mat-form-field> 
+                  <!-- matInput: tipo de dado que o campo vai receber-->
+                  <input matInput="date" placeholder="Data 2"/>
+                </mat-form-field>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col s12 m2 l2">
+                <mat-form-field> 
+                  <!-- matInput: tipo de dado que o campo vai receber-->
+                  <input matInput="text" placeholder="Campo 3"/>
+                </mat-form-field>
+              </div>
+              <div class="col s12 m2 l2">
+                  <mat-form-field> 
+                    <!-- matInput: tipo de dado que o campo vai receber-->
+                    <input matInput="date" placeholder="Data 3"/>
+                  </mat-form-field>
+                </div>
+            </div>
+
+            <div class="col s12 m2 l2">
+              <mat-form-field>
+                
+              </mat-form-field>
+            </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div> 
+</div>
