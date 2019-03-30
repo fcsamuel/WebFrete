@@ -12,6 +12,7 @@ export class TabelafreteComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.tabelaFreteList = new Array<TabelaFrete>();
   }
 
   salvar() {

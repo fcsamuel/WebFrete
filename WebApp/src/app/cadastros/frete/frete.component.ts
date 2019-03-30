@@ -20,6 +20,7 @@ export class FreteComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.freteList = new Array<Frete>();
   }
 
   //#region CADASTROS

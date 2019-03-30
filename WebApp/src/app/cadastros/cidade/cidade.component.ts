@@ -13,6 +13,7 @@ export class CidadeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.cidadeList = new Array<Cidade>();
   }
 
   salvar() {

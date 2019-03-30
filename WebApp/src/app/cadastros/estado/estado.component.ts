@@ -13,6 +13,7 @@ export class EstadoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.estadoList = new Array<Estado>();
   }
 
   salvar() {
