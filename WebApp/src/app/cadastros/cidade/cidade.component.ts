@@ -23,4 +23,8 @@ export class CidadeComponent implements OnInit {
     
   }
 
+  atualizar() {
+    
+  }
+
 }

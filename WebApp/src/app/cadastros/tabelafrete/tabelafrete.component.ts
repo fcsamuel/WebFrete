@@ -22,4 +22,8 @@ export class TabelafreteComponent implements OnInit {
 
   }
 
+  atualizar() {
+    
+  }
+
 }

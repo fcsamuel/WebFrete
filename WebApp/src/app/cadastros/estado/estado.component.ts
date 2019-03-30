@@ -23,4 +23,8 @@ export class EstadoComponent implements OnInit {
 
   }
 
+  atualizar() {
+    
+  }
+
 }

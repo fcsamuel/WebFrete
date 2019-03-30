@@ -26,15 +26,21 @@ export class FreteComponent implements OnInit {
   salvarEstado() {
     this.estadoComponent.salvar();
   }
-  salvarCidade() {
-    this.cidadeComponent.salvar();
-  }
-
   removerEstado() {
     this.estadoComponent.remover();
   }
+  atualizarEstado() {
+    this.estadoComponent.atualizar();
+  }
+
+  salvarCidade() {
+    this.cidadeComponent.salvar();
+  }
   removerCidade() {
     this.cidadeComponent.remover();
+  }
+  atualizarCidade() {
+    this.cidadeComponent.atualizar();
   }
 
   salvarTabelaFrete() {
@@ -43,14 +49,21 @@ export class FreteComponent implements OnInit {
   removerTabelaFrete() {
     this.tabelaFreteComponent.remover();
   }
+  atualizarTabelaFrete() {
+    this.tabelaFreteComponent.atualizar();
+  }
   //#endregion
 
   //#region FRETE
   salvar() {
-
+    
   }
 
   remover() {
+
+  }
+
+  atualizar() {
 
   }
   //#endregion
