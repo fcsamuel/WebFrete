@@ -4,8 +4,8 @@ import { PagenotfoundComponent } from './erros/pagenotfound/pagenotfound.compone
 import { FreteComponent } from './cadastros/frete/frete.component';
 
 const routes: Routes = [
-  {path: '**', component: PagenotfoundComponent},
-  {path: 'frete', component: FreteComponent}
+  {path: 'frete', component: FreteComponent},
+  {path: '**', component: PagenotfoundComponent}
 ];
 
 @NgModule({
