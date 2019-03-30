@@ -3,14 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EstadoComponent } from './Model/estado/estado.component';
-import { CidadeComponent } from './Model/cidade/cidade.component';
+import { EstadoComponent } from './cadastros/estado/estado.component';
+import { CidadeComponent } from './cadastros/cidade/cidade.component';
+import { PagenotfoundComponent } from './erros/pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EstadoComponent,
-    CidadeComponent
+    CidadeComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
