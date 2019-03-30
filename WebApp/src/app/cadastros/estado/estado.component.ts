@@ -12,4 +12,8 @@ export class EstadoComponent implements OnInit {
   ngOnInit() {
   }
 
+  salvar() {
+    //TESTE COMUNICACAO ENTRE COMPONENTS
+  }
+
 }
