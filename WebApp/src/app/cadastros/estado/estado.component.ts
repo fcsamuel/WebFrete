@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Estado } from '../../models/estado';
 
 @Component({
   selector: 'app-estado',
@@ -7,13 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EstadoComponent implements OnInit {
 
+  public estadoList: Array<Estado>;
+
   constructor() { }
 
   ngOnInit() {
   }
 
   salvar() {
-    //TESTE COMUNICACAO ENTRE COMPONENTS
+    
+  }
+
+  remover() {
+
   }
 
 }

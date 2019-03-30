@@ -7,6 +7,7 @@ import { EstadoComponent } from './cadastros/estado/estado.component';
 import { CidadeComponent } from './cadastros/cidade/cidade.component';
 import { PagenotfoundComponent } from './erros/pagenotfound/pagenotfound.component';
 import { FreteComponent } from './cadastros/frete/frete.component';
+import { TabelafreteComponent } from './cadastros/tabelafrete/tabelafrete.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { FreteComponent } from './cadastros/frete/frete.component';
     EstadoComponent,
     CidadeComponent,
     PagenotfoundComponent,
-    FreteComponent
+    FreteComponent,
+    TabelafreteComponent
   ],
   imports: [
     BrowserModule,
