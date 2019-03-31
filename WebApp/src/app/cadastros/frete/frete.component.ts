@@ -16,11 +16,17 @@ export class FreteComponent implements OnInit {
   public tabelaFreteComponent: TabelafreteComponent = new TabelafreteComponent;
   
   public fretes: Array<Frete>;
+  public isExpandido: number;
 
   constructor() { }
 
   ngOnInit() {
     this.fretes = new Array<Frete>();
+    this.isExpandido = 0;
+  }
+
+  setExpandido() {
+    this.isExpandido = 1;
   }
 
   //#region CADASTROS
