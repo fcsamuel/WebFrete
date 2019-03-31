@@ -7,12 +7,12 @@ import { TabelaFrete } from '../../models/tabelaFrete';
 })
 export class TabelafreteComponent implements OnInit {
 
-  public tabelaFreteList: Array<TabelaFrete>;
+  public tabelasFretes: Array<TabelaFrete>;
 
   constructor() { }
 
   ngOnInit() {
-    this.tabelaFreteList = new Array<TabelaFrete>();
+    this.tabelasFretes = new Array<TabelaFrete>();
   }
 
   salvar() {

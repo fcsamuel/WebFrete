@@ -86,7 +86,7 @@ export class CidadeComponent implements OnInit {
     this.cidade.ceps.push("32588-082");
   }
 
-  salvarCidade() {
+  salvar() {
     this.cidades.push(this.cidade);
     this.cidade = new Cidade();
     this.dataSource = new MatTableDataSource<Cidade>(this.cidades);
@@ -94,11 +94,11 @@ export class CidadeComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  removerCidade() {
+  remover() {
     
   }
 
-  atualizarCidade() {
+  atualizar() {
     
   }
 

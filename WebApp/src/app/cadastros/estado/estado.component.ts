@@ -8,12 +8,12 @@ import { Estado } from '../../models/estado';
 })
 export class EstadoComponent implements OnInit {
 
-  public estadoList: Array<Estado>;
+  public estados: Array<Estado>;
 
   constructor() { }
 
   ngOnInit() {
-    this.estadoList = new Array<Estado>();
+    this.estados = new Array<Estado>();
   }
 
   salvar() {

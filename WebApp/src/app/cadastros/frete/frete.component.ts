@@ -15,12 +15,12 @@ export class FreteComponent implements OnInit {
   public cidadeComponent: CidadeComponent = new CidadeComponent;
   public tabelaFreteComponent: TabelafreteComponent = new TabelafreteComponent;
   
-  public freteList: Array<Frete>;
+  public fretes: Array<Frete>;
 
   constructor() { }
 
   ngOnInit() {
-    this.freteList = new Array<Frete>();
+    this.fretes = new Array<Frete>();
   }
 
   //#region CADASTROS
