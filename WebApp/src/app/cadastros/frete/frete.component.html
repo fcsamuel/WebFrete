@@ -3,8 +3,8 @@
     <mat-accordion>
       <mat-expansion-panel name="panelCidade" [expanded]="isExpandido === 1" (opened)="setExpandido()">
         <mat-expansion-panel-header>
-          <mat-panel-title>Cadastro de Cidades</mat-panel-title>
-          <mat-panel-description>Cidade</mat-panel-description>
+          <mat-panel-title>Cidade</mat-panel-title>
+          <mat-panel-description>Cadastro de Cidades</mat-panel-description>
         </mat-expansion-panel-header>
         <div class="row">
           <div class="col s12 m2 l2">
@@ -35,8 +35,8 @@
     <mat-accordion>
       <mat-expansion-panel name="panelEstado" [expanded]="isExpandido === 1" (opened)="setExpandido()">
         <mat-expansion-panel-header>
-          <mat-panel-title>Cadastro de Estados</mat-panel-title>
-          <mat-panel-description>Estado</mat-panel-description>
+          <mat-panel-title>Estado</mat-panel-title>
+          <mat-panel-description>Cadastro de Estados</mat-panel-description>
         </mat-expansion-panel-header>
         <div class="row">
           <div class="col s12 m2 l2">
@@ -65,8 +65,8 @@
     <mat-accordion>
       <mat-expansion-panel name="panelTabelaFrete" [expanded]="isExpandido === 1" (opened)="setExpandido()">
         <mat-expansion-panel-header>
-          <mat-panel-title>Cadastro de Tabelas de Frete</mat-panel-title>
-          <mat-panel-description>Tabela de Frete</mat-panel-description>
+          <mat-panel-title>Tabela de Frete</mat-panel-title>
+          <mat-panel-description>Cadastro de Tabelas de Frete</mat-panel-description>
         </mat-expansion-panel-header>
         <div class="row">
           <div class="col s12 m4 l4">
@@ -99,8 +99,8 @@
     <mat-accordion>
       <mat-expansion-panel name="panelFrete" [expanded]="isExpandido === 1" (opened)="setExpandido()">
         <mat-expansion-panel-header>
-          <mat-panel-title>Fretes</mat-panel-title>
-          <mat-panel-description>Frete</mat-panel-description>
+          <mat-panel-title>Frete</mat-panel-title>
+          <mat-panel-description>Cadastros de Fretes</mat-panel-description>
         </mat-expansion-panel-header>
         <div class="row">
           <div class="col s12 m6 l6">
@@ -119,17 +119,22 @@
           </div>
         </div>
         <div class="row">
-            <div class="col s12 m4 l4">
+            <div class="col s12 m3 l3">
               <mat-form-field>
                 <input matInput placeholder="Id" type="number" [(ngModel)]="freteId" required>
               </mat-form-field>
             </div>
-            <div class="col s12 m4 l4">
+            <div class="col s12 m3 l3">
               <mat-form-field>
                 <input matInput placeholder="Peso" type="number" [(ngModel)]="peso" required>
               </mat-form-field>
             </div>
-            <div class="col s12 m4 l4">
+            <div class="col s12 m3 l3">
+              <mat-form-field>
+                <input matInput placeholder="Valor" type="number" readonly>
+              </mat-form-field>
+            </div>
+            <div class="col s12 m3 l3">
               <mat-form-field>
                 <input matInput placeholder="Valor Total" type="number" [(ngModel)]="valorTotal" readonly>
               </mat-form-field>
