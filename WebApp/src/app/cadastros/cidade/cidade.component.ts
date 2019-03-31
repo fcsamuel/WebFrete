@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Cidade } from '../../models/cidade';
 import { Estado } from '../../models/estado';
+
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-cidade',
@@ -17,10 +21,15 @@ export class CidadeComponent implements OnInit {
   public dataSource: any;
   public palavraChave: string;
 
+  @ViewChild(MatPaginator) paginatorCustom: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
   constructor() { }
 
   ngOnInit() {
+    this.cidade = new Cidade();
     this.cidades = new Array<Cidade>();
+    this.carregaDados();
   }
 
   carregaDados() {
@@ -78,7 +87,11 @@ export class CidadeComponent implements OnInit {
   }
 
   salvarCidade() {
-    
+    this.cidades.push(this.cidade);
+    this.cidade = new Cidade();
+    this.dataSource = new MatTableDataSource<Cidade>(this.cidades);
+    this.dataSource.paginator = this.paginatorCustom;
+    this.dataSource.sort = this.sort;
   }
 
   removerCidade() {
