@@ -13,6 +13,8 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class CidadeComponent implements OnInit {
 
+  displayedColumns: string[] = ['cidadeId', 'descricao', 'estado'];
+  
   public cidade: Cidade;
   public cidades: Array<Cidade>;
   public cidadeSelec: Cidade = new Cidade();
@@ -20,6 +22,7 @@ export class CidadeComponent implements OnInit {
   public estados: Array<Estado>;
   public dataSource: any;
   public palavraChave: string;
+  public isExpandido: number;
 
   @ViewChild(MatPaginator) paginatorCustom: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -30,6 +33,11 @@ export class CidadeComponent implements OnInit {
     this.cidade = new Cidade();
     this.cidades = new Array<Cidade>();
     this.carregaDados();
+    this.isExpandido = 0;
+  }
+
+  setExpandido() {
+    this.isExpandido = 1;
   }
 
   carregaDados() {
@@ -99,6 +107,14 @@ export class CidadeComponent implements OnInit {
   }
 
   atualizar() {
+    
+  }
+
+  limpar() {
+
+  }
+
+  aplicarFiltro(valor: string){
     
   }
 

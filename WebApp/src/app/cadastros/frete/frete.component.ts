@@ -11,6 +11,8 @@ import { Frete } from '../../models/frete';
 })
 export class FreteComponent implements OnInit {
 
+  displayedColumns: string[] = ['freteId', 'tabelaFreteComponent.origem', 'tabelaFreteComponent.destino', 'peso', 'valorTotal'];
+
   public estadoComponent: EstadoComponent = new EstadoComponent;
   public cidadeComponent: CidadeComponent = new CidadeComponent;
   public tabelaFreteComponent: TabelafreteComponent = new TabelafreteComponent;
@@ -29,39 +31,6 @@ export class FreteComponent implements OnInit {
     this.isExpandido = 1;
   }
 
-  //#region CADASTROS
-  salvarEstado() {
-    this.estadoComponent.salvar();
-  }
-  removerEstado() {
-    this.estadoComponent.remover();
-  }
-  atualizarEstado() {
-    this.estadoComponent.atualizar();
-  }
-
-  salvarCidade() {
-    this.cidadeComponent.salvar();
-  }
-  removerCidade() {
-    this.cidadeComponent.remover();
-  }
-  atualizarCidade() {
-    this.cidadeComponent.atualizar();
-  }
-
-  salvarTabelaFrete() {
-    this.tabelaFreteComponent.salvar();
-  }
-  removerTabelaFrete() {
-    this.tabelaFreteComponent.remover();
-  }
-  atualizarTabelaFrete() {
-    this.tabelaFreteComponent.atualizar();
-  }
-  //#endregion
-
-  //#region FRETE
   salvar() {
     
   }
@@ -73,5 +42,12 @@ export class FreteComponent implements OnInit {
   atualizar() {
 
   }
-  //#endregion
+
+  limpar() {
+    
+  }
+
+  aplicarFiltro(valor: string){
+    
+  }
 }

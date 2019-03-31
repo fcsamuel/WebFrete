@@ -1,7 +1,11 @@
+<!--CEP..........................................-->
+
+
+<!--CIDADE..........................................-->
 <div class="row">
   <div class="col s12">
     <mat-accordion>
-      <mat-expansion-panel name="panelCidade" [expanded]="isExpandido === 1" (opened)="setExpandido()">
+      <mat-expansion-panel name="panelCidade" [expanded]="cidadeComponent.isExpandido === 1" (opened)="cidadeComponent.setExpandido()">
         <mat-expansion-panel-header>
           <mat-panel-title>Cidade</mat-panel-title>
           <mat-panel-description>Cadastro de Cidades</mat-panel-description>
@@ -9,20 +13,66 @@
         <div class="row">
           <div class="col s12 m2 l2">
               <mat-form-field>
-                  <input matInput placeholder="Id" type="number" [(ngModel)]="cidadeId" required>
+                  <input matInput placeholder="Id" type="number" [(ngModel)]="cidadeComponent.cidadeId" required>
               </mat-form-field>
           </div>
           <div class="col s12 m8 l8">
               <mat-form-field>
-                <input matInput placeholder="Descricao" type="text" [(ngModel)]="descricao" required>
+                <input matInput placeholder="Descricao" type="text" [(ngModel)]="cidadeComponent.descricao" required>
               </mat-form-field>
           </div>
           <div class="col s12 m2 l2">
-              <mat-select placeholder="Estado" name="estado" [(ngModel)]="estadoId">
-                <mat-option *ngFor="let e of estados" [value]="e.estadoId">
-                  {{e.sigla + " - " + e.descricao}}
-                </mat-option>
-              </mat-select>
+            <!--NOME DO COMPONENTE?-->
+            <mat-select placeholder="Estado" name="estado" [(ngModel)]="estadoId">
+              <mat-option *ngFor="let e of estados" [value]="e.estadoId">
+                {{e.sigla + " - " + e.descricao}}
+              </mat-option>
+            </mat-select>
+          </div>
+        </div>
+
+        <!--TEM COMO DEIXAR NA MESMA LINHA?-->
+        <div class="row footer-btn">
+          <div class="button-row col s12"> 
+            <button mat-raised-button color="blue" (click)="cidadeComponent.limpar()" >Limpar</button>    
+            <button mat-raised-button color="green" (click)="cidadeComponent.salvar()">Salvar</button>
+            <!--<button *ngIf="edicao" mat-raised-button color="green" (click)="cidadeComponent.atualizar()">Atualizar</button>-->
+          </div> 
+        </div>
+        <div class="row heading">
+          <div class="col s12">
+            <div class="heading__tools">
+              <div class="search">
+                <mat-form-field>
+                  <mat-icon svgIcon="slidenav-search"></mat-icon>
+                  <input matInput id="pesquisarId" name="pesquisar" placeholder="Pesquisar" 
+                  (keyup)="cidadeComponent.aplicarFiltro($event.target.value)">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!--NOME DO COMPONENTE?-->
+        <div class="row">
+          <div class="col s12 m12 l12">  
+            <mat-table #table [dataSource]="dataSource" matSort class="table-striped">
+              <ng-container matColumnDef="cidadeId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Código </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.cidadeId}} </mat-cell>>
+              </ng-container>
+              <ng-container matColumnDef="descricao">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Descrição </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.descricao}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="estado">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.estado}} </mat-cell>
+              </ng-container>
+            <mat-header-row *matHeaderRowDef="cidadeComponent.displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: cidadeComponent.displayedColumns;"></mat-row>
+            </mat-table>  
+            <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>  
           </div>
         </div>
       </mat-expansion-panel>
@@ -30,10 +80,11 @@
   </div>
 </div>
 
+<!--ESTADO..........................................-->
 <div class="row">
   <div class="col s12">
     <mat-accordion>
-      <mat-expansion-panel name="panelEstado" [expanded]="isExpandido === 1" (opened)="setExpandido()">
+      <mat-expansion-panel name="panelEstado" [expanded]="estadoComponent.isExpandido === 1" (opened)="estadoComponent.setExpandido()">
         <mat-expansion-panel-header>
           <mat-panel-title>Estado</mat-panel-title>
           <mat-panel-description>Cadastro de Estados</mat-panel-description>
@@ -41,18 +92,63 @@
         <div class="row">
           <div class="col s12 m2 l2">
             <mat-form-field>
-                <input matInput placeholder="Id" type="number" [(ngModel)]="estadoId" required>
+                <input matInput placeholder="Id" type="number" [(ngModel)]="estadoComponent.estadoId" required>
             </mat-form-field>
           </div>
           <div class="col s12 m2 l2">
             <mat-form-field>
-                <input matInput placeholder="Sigla" type="text" [(ngModel)]="sigla" required>
+                <input matInput placeholder="Sigla" type="text" [(ngModel)]="estadoComponent.sigla" required>
             </mat-form-field>
           </div>
           <div class="col s12 m8 l8">
             <mat-form-field>
-                <input matInput placeholder="Descrição" type="text" [(ngModel)]="descricao" required>
+                <input matInput placeholder="Descrição" type="text" [(ngModel)]="estadoComponent.descricao" required>
             </mat-form-field>
+          </div>
+        </div>
+
+        <!--TEM COMO DEIXAR NA MESMA LINHA?-->
+        <div class="row footer-btn">
+          <div class="button-row col s12"> 
+            <button mat-raised-button color="blue" (click)="estadoComponent.limpar()" >Limpar</button>    
+            <button mat-raised-button color="green" (click)="estadoComponent.salvar()">Salvar</button>
+            <!--<button *ngIf="edicao" mat-raised-button color="green" (click)="estadoComponent.atualizar()">Atualizar</button>-->
+          </div> 
+        </div>
+        <div class="row heading">
+          <div class="col s12">
+            <div class="heading__tools">
+              <div class="search">
+                <mat-form-field>
+                  <mat-icon svgIcon="slidenav-search"></mat-icon>
+                  <input matInput id="pesquisarId" name="pesquisar" placeholder="Pesquisar" 
+                  (keyup)="estadoComponent.aplicarFiltro($event.target.value)">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!--NOME DO COMPONENTE?-->
+        <div class="row">
+          <div class="col s12 m12 l12">  
+            <mat-table #table [dataSource]="dataSource" matSort class="table-striped">
+              <ng-container matColumnDef="estadoId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Código </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.estadoId}} </mat-cell>>
+              </ng-container>
+              <ng-container matColumnDef="sigla">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Sigla </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.sigla}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="descricao">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Descrição </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.descricao}} </mat-cell>
+              </ng-container>
+            <mat-header-row *matHeaderRowDef="estadoComponent.displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: estadoComponent.displayedColumns;"></mat-row>
+            </mat-table>  
+            <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>  
           </div>
         </div>
       </mat-expansion-panel>
@@ -60,16 +156,18 @@
   </div>
 </div>
 
+<!--TABELA FRETE..........................................-->
 <div class="row">
   <div class="col s12">
     <mat-accordion>
-      <mat-expansion-panel name="panelTabelaFrete" [expanded]="isExpandido === 1" (opened)="setExpandido()">
+      <mat-expansion-panel name="panelTabelaFrete" [expanded]="tabelaFreteComponent.isExpandido === 1" (opened)="tabelaFreteComponent.setExpandido()">
         <mat-expansion-panel-header>
           <mat-panel-title>Tabela de Frete</mat-panel-title>
           <mat-panel-description>Cadastro de Tabelas de Frete</mat-panel-description>
         </mat-expansion-panel-header>
         <div class="row">
           <div class="col s12 m4 l4">
+            <!--NOME DO COMPONENTE?-->
             <mat-select placeholder="Origem" name="estado" [(ngModel)]="estadoId">
               <mat-option *ngFor="let e of estados" [value]="e.estadoId">
                 {{e.sigla + " - " + e.descricao}}
@@ -77,6 +175,7 @@
             </mat-select>
           </div>
           <div class="col s12 m4 l4">
+            <!--NOME DO COMPONENTE?-->
             <mat-select placeholder="Destino" name="estado" [(ngModel)]="estadoId">
               <mat-option *ngFor="let e of estados" [value]="e.estadoId">
                 {{e.sigla + " - " + e.descricao}}
@@ -85,8 +184,53 @@
           </div>
           <div class="col s12 m4 l4">
             <mat-form-field>
-                <input matInput placeholder="Valor" type="number" [(ngModel)]="valor" required>
+                <input matInput placeholder="Valor" type="number" [(ngModel)]="tabelaFreteComponent.valor" required>
             </mat-form-field>
+          </div>
+        </div>
+
+        <!--TEM COMO DEIXAR NA MESMA LINHA?-->
+        <div class="row footer-btn">
+          <div class="button-row col s12"> 
+            <button mat-raised-button color="blue" (click)="tabelaFreteComponent.limpar()" >Limpar</button>    
+            <button mat-raised-button color="green" (click)="tabelaFreteComponent.salvar()">Salvar</button>
+            <!--<button *ngIf="edicao" mat-raised-button color="green" (click)="tabelaFreteComponent.atualizar()">Atualizar</button>-->
+          </div> 
+        </div>
+        <div class="row heading">
+          <div class="col s12">
+            <div class="heading__tools">
+              <div class="search">
+                <mat-form-field>
+                  <mat-icon svgIcon="slidenav-search"></mat-icon>
+                  <input matInput id="pesquisarId" name="pesquisar" placeholder="Pesquisar" 
+                  (keyup)="tabelaFreteComponent.aplicarFiltro($event.target.value)">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!--NOME DO COMPONENTE?-->
+        <div class="row">
+          <div class="col s12 m12 l12">  
+            <mat-table #table [dataSource]="dataSource" matSort class="table-striped">
+              <ng-container matColumnDef="origem">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Origem </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.origem}} </mat-cell>>
+              </ng-container>
+              <ng-container matColumnDef="destino">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Destino </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.destino}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="valor">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Valor </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.valor}} </mat-cell>
+              </ng-container>
+            <mat-header-row *matHeaderRowDef="tabelaFreteComponent.displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: tabelaFreteComponent.displayedColumns;"></mat-row>
+            </mat-table>  
+            <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>  
           </div>
         </div>
       </mat-expansion-panel>
@@ -94,16 +238,18 @@
   </div>
 </div>
 
+<!--FRETE..........................................-->
 <div class="row">
   <div class="col s12">
     <mat-accordion>
-      <mat-expansion-panel name="panelFrete" [expanded]="isExpandido === 1" (opened)="setExpandido()">
+      <mat-expansion-panel name="panelFrete" [expanded]="this.isExpandido === 1" (opened)="this.setExpandido()">
         <mat-expansion-panel-header>
           <mat-panel-title>Frete</mat-panel-title>
           <mat-panel-description>Cadastros de Fretes</mat-panel-description>
         </mat-expansion-panel-header>
         <div class="row">
           <div class="col s12 m6 l6">
+            <!--NOME DO COMPONENTE?-->
             <mat-select placeholder="Origem" name="estado" [(ngModel)]="estadoId">
               <mat-option *ngFor="let e of estados" [value]="e.estadoId">
                 {{e.sigla + " - " + e.descricao}}
@@ -111,6 +257,7 @@
             </mat-select>
           </div>
           <div class="col s12 m6 l6">
+            <!--NOME DO COMPONENTE?-->
             <mat-select placeholder="Destino" name="estado" [(ngModel)]="estadoId">
               <mat-option *ngFor="let e of estados" [value]="e.estadoId">
                 {{e.sigla + " - " + e.descricao}}
@@ -121,12 +268,12 @@
         <div class="row">
             <div class="col s12 m3 l3">
               <mat-form-field>
-                <input matInput placeholder="Id" type="number" [(ngModel)]="freteId" required>
+                <input matInput placeholder="Id" type="number" [(ngModel)]="this.freteId" required>
               </mat-form-field>
             </div>
             <div class="col s12 m3 l3">
               <mat-form-field>
-                <input matInput placeholder="Peso" type="number" [(ngModel)]="peso" required>
+                <input matInput placeholder="Peso" type="number" [(ngModel)]="this.peso" required>
               </mat-form-field>
             </div>
             <div class="col s12 m3 l3">
@@ -136,9 +283,66 @@
             </div>
             <div class="col s12 m3 l3">
               <mat-form-field>
-                <input matInput placeholder="Valor Total" type="number" [(ngModel)]="valorTotal" readonly>
+                <input matInput placeholder="Valor Total" type="number" [(ngModel)]="this.valorTotal" readonly>
               </mat-form-field>
             </div>
+        </div>
+
+        <!--TEM COMO DEIXAR NA MESMA LINHA?-->
+        <div class="row footer-btn">
+          <div class="button-row col s12"> 
+            <button mat-raised-button color="blue" (click)="this.limpar()" >Limpar</button>    
+            <button mat-raised-button color="green" (click)="this.salvar()">Salvar</button>
+            <!--<button *ngIf="edicao" mat-raised-button color="green" (click)="freteComponent.atualizar()">Atualizar</button>-->
+          </div> 
+        </div>
+        <div class="row heading">
+          <div class="col s12">
+            <div class="heading__tools">
+              <div class="search">
+                <mat-form-field>
+                  <mat-icon svgIcon="slidenav-search"></mat-icon>
+                  <input matInput id="pesquisarId" name="pesquisar" placeholder="Pesquisar" 
+                  (keyup)="this.aplicarFiltro($event.target.value)">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!--NOME DO COMPONENTE?-->
+        <div class="row">
+          <div class="col s12 m12 l12">  
+            <mat-table #table [dataSource]="dataSource" matSort class="table-striped">
+              <ng-container matColumnDef="freteId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.freteId}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="tabelaFreteComponent.origem">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Origem </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.tabelaFreteComponent.origem}} </mat-cell>>
+              </ng-container>
+              <ng-container matColumnDef="tabelaFreteComponent.destino">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Destino </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.tabelaFreteComponent.destino}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="valor">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Valor </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.valor}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="peso">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Peso </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.peso}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="valorTotal">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Valor Total </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.valorTotal}} </mat-cell>
+              </ng-container>
+            <mat-header-row *matHeaderRowDef="this.displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: this.displayedColumns;"></mat-row>
+            </mat-table>  
+            <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>  
+          </div>
         </div>
       </mat-expansion-panel>
     </mat-accordion>

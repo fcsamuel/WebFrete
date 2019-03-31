@@ -7,12 +7,20 @@ import { TabelaFrete } from '../../models/tabelaFrete';
 })
 export class TabelafreteComponent implements OnInit {
 
+  displayedColumns: string[] = ['origem', 'destino', 'valor'];
+
   public tabelasFretes: Array<TabelaFrete>;
+  public isExpandido: number;
 
   constructor() { }
 
   ngOnInit() {
     this.tabelasFretes = new Array<TabelaFrete>();
+    this.isExpandido = 0;
+  }
+
+  setExpandido() {
+    this.isExpandido = 1;
   }
 
   salvar() {
@@ -24,6 +32,14 @@ export class TabelafreteComponent implements OnInit {
   }
 
   atualizar() {
+    
+  }
+
+  limpar() {
+    
+  }
+
+  aplicarFiltro(valor: string){
     
   }
 
