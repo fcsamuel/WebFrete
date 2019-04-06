@@ -22,12 +22,13 @@
               </mat-form-field>
           </div>
           <div class="col s12 m2 l2">
-            <!--SOLVED-->
-            <mat-select placeholder="Estado" name="estado" [(ngModel)]="estadoId">
-              <mat-option *ngFor="let e of estados" [value]="e.estadoId">
-                {{e.sigla + " - " + e.descricao}}
-              </mat-option>
-            </mat-select>
+            <mat-form-field>
+              <mat-select placeholder="Estado" name="estado" [(ngModel)]="estadoComponent.estadoSelId" (selectionChange)="estadoComponent.atualizaListBox()">
+                <mat-option *ngFor="let e of estadoComponent.estados" [value]="e.estadoId">
+                  {{e.sigla + " - " + e.descricao}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
         </div>
 
@@ -167,20 +168,22 @@
         </mat-expansion-panel-header>
         <div class="row">
           <div class="col s12 m4 l4">
-            <!--SOLVED-->
-            <mat-select placeholder="Origem" name="estado" [(ngModel)]="estadoId">
-              <mat-option *ngFor="let e of estados" [value]="e.estadoId">
-                {{e.sigla + " - " + e.descricao}}
-              </mat-option>
-            </mat-select>
+            <mat-form-field>
+              <mat-select placeholder="Origem" name="estadoOrigem" [(ngModel)]="estadoComponent.estadoSelId" (selectionChange)="estadoComponent.atualizaListBox()">
+                <mat-option *ngFor="let e of estadoComponent.estados" [value]="e.estadoId">
+                  {{e.sigla + " - " + e.descricao}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <div class="col s12 m4 l4">
-            <!--SOLVED-->
-            <mat-select placeholder="Destino" name="estado" [(ngModel)]="estadoId">
-              <mat-option *ngFor="let e of estados" [value]="e.estadoId">
-                {{e.sigla + " - " + e.descricao}}
-              </mat-option>
-            </mat-select>
+            <mat-form-field>
+              <mat-select placeholder="Destino" name="estadoDestino" [(ngModel)]="estadoComponent.estadoSelId" (selectionChange)="estadoComponent.atualizaListBox()">
+                <mat-option *ngFor="let e of estadoComponent.estados" [value]="e.estadoId">
+                  {{e.sigla + " - " + e.descricao}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <div class="col s12 m4 l4">
             <mat-form-field>
@@ -249,20 +252,22 @@
         </mat-expansion-panel-header>
         <div class="row">
           <div class="col s12 m6 l6">
-            <!--SOLVED-->
-            <mat-select placeholder="Origem" name="estado" [(ngModel)]="estadoId">
-              <mat-option *ngFor="let e of estados" [value]="e.estadoId">
-                {{e.sigla + " - " + e.descricao}}
-              </mat-option>
-            </mat-select>
+            <mat-form-field>
+              <mat-select placeholder="Origem" name="freteOrigem" [(ngModel)]="estadoComponent.estadoSelId" (selectionChange)="estadoComponent.atualizaListBox()">
+                <mat-option *ngFor="let e of estadoComponent.estados" [value]="e.estadoId">
+                  {{e.sigla + " - " + e.descricao}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <div class="col s12 m6 l6">
-            <!--SOLVED-->
-            <mat-select placeholder="Destino" name="estado" [(ngModel)]="estadoId">
-              <mat-option *ngFor="let e of estados" [value]="e.estadoId">
-                {{e.sigla + " - " + e.descricao}}
-              </mat-option>
-            </mat-select>
+            <mat-form-field>
+              <mat-select placeholder="Destino" name="freteDestino" [(ngModel)]="estadoComponent.estadoSelId" (selectionChange)="estadoComponent.atualizaListBox()">
+                <mat-option *ngFor="let e of estadoComponent.estados" [value]="e.estadoId">
+                  {{e.sigla + " - " + e.descricao}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
         </div>
         <div class="row">

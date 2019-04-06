@@ -17,6 +17,8 @@ export class EstadoComponent implements OnInit {
   public estados: Array<Estado> = new Array<Estado>();
   public isExpandido: number = 0;
   public dataSource: any;
+  public estadoSel: Estado = new Estado();
+  public estadoSelId: number;
 
   @ViewChild(MatPaginator) paginatorCustom: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -60,6 +62,17 @@ export class EstadoComponent implements OnInit {
     this.dataSource = new MatTableDataSource<Estado>(this.estados);
     this.dataSource.paginator = this.paginatorCustom;
     this.dataSource.sort = this.sort;
+  }
+
+  atualizaListBox() {
+    console.log("Atualizar Listbox, meu patrão");
+    let id = this.estadoSelId;
+    let estadoSel;
+    this.estados.forEach(function (item) {
+      if (item.estadoId == id) {
+        estadoSel = item;
+      }
+    });
   }
 
 }
