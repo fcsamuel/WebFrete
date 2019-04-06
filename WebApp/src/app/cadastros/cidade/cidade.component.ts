@@ -151,10 +151,10 @@ export class CidadeComponent implements OnInit {
       this.cidades[this.cidades.indexOf(this.cidadeAtualizar)] = this.cidade;
       console.log("Atualizou, meu patrão...");
     }
+    console.log(this.cidades);
     this.cidadeAtualizar = null;
     this.cidade = new Cidade();
     this.atualizaTabela();
-    console.log(this.cidades);
   }
 
   remover(cidadeRemover: Cidade) {
@@ -163,15 +163,15 @@ export class CidadeComponent implements OnInit {
     this.atualizaTabela();
   }
 
-  limpar() {
-    this.cidade = new Cidade();
-    console.log("Limpou, meu patrão...");
-  }
-
   setFields(cidadeAtualizar: Cidade) {
     this.cidadeAtualizar = cidadeAtualizar;
     this.cidade = new Cidade();
     this.cidade = cidadeAtualizar;
+  }
+  
+  limpar() {
+    this.cidade = new Cidade();
+    console.log("Limpou, meu patrão...");
   }
 
   aplicarFiltro(valor: string){

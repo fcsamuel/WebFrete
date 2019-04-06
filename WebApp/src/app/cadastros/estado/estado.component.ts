@@ -14,7 +14,7 @@ export class EstadoComponent implements OnInit {
   displayedColumns: string[] = ['estadoId', 'sigla', 'descricao', 'editColumn'];
 
   public estado: Estado = new Estado();
-  public estadoAtualilzar: Estado = new Estado();
+  public estadoAtualilzar: Estado = null;
   public estados: Array<Estado> = new Array<Estado>();
   public isExpandido: number = 0;
   public dataSource: any;
@@ -42,6 +42,7 @@ export class EstadoComponent implements OnInit {
       console.log("Atualizou, meu patrão...");
     }
     console.log(this.estados);
+    this.estadoAtualilzar = null;
     this.estado = new Estado();
     this.atualizaTabela();
   }

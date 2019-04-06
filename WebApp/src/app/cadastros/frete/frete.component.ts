@@ -21,7 +21,7 @@ export class FreteComponent implements OnInit {
   public tabelaFreteComponent: TabelafreteComponent = new TabelafreteComponent;
   
   public frete: Frete = new Frete();
-  public freteAtualizar: Frete = new Frete();
+  public freteAtualizar: Frete = null;
   public fretes: Array<Frete> = new Array<Frete>();
   public isExpandido: number = 0;
   public dataSource: any;
@@ -47,6 +47,7 @@ export class FreteComponent implements OnInit {
       console.log("Atualizou, meu patrão...");
     }
     console.log(this.fretes);
+    this.freteAtualizar = null;
     this.frete = new Frete();
     this.atualizaTabela();
   }
@@ -54,7 +55,6 @@ export class FreteComponent implements OnInit {
   remover(freteRemover: Frete) {
     this.fretes.splice(this.fretes.indexOf(freteRemover), 1);
     console.log("Removeu, meu patrão...");
-    console.log(this.fretes);
     this.atualizaTabela();
   }
 
