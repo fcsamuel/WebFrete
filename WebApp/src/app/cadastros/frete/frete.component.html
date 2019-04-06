@@ -13,12 +13,12 @@
         <div class="row">
           <div class="col s12 m2 l2">
               <mat-form-field>
-                  <input matInput placeholder="Id" type="number" [(ngModel)]="cidadeComponent.cidade.cidadeId" required>
+                  <input matInput placeholder="Id" type="number" [(ngModel)]="cidadeComponent.cidadeId" required>
               </mat-form-field>
           </div>
           <div class="col s12 m8 l8">
               <mat-form-field>
-                <input matInput placeholder="Descricao" type="text" [(ngModel)]="cidadeComponent.cidade.descricao" required>
+                <input matInput placeholder="Descricao" type="text" [(ngModel)]="cidadeComponent.descricao" required>
               </mat-form-field>
           </div>
           <div class="col s12 m2 l2">
@@ -91,17 +91,17 @@
         <div class="row">
           <div class="col s12 m2 l2">
             <mat-form-field>
-                <input matInput placeholder="Id" type="number" [(ngModel)]="estadoComponent.estado.estadoId" required>
+                <input matInput placeholder="Id" type="number" [(ngModel)]="estadoComponent.estadoId" required>
             </mat-form-field>
           </div>
           <div class="col s12 m2 l2">
             <mat-form-field>
-                <input matInput placeholder="Sigla" type="text" [(ngModel)]="estadoComponent.estado.sigla" required>
+                <input matInput placeholder="Sigla" type="text" [(ngModel)]="estadoComponent.sigla" required>
             </mat-form-field>
           </div>
           <div class="col s12 m8 l8">
             <mat-form-field>
-                <input matInput placeholder="Descrição" type="text" [(ngModel)]="estadoComponent.estado.descricao" required>
+                <input matInput placeholder="Descrição" type="text" [(ngModel)]="estadoComponent.descricao" required>
             </mat-form-field>
           </div>
         </div>
@@ -182,7 +182,7 @@
           </div>
           <div class="col s12 m4 l4">
             <mat-form-field>
-                <input matInput placeholder="Valor" type="number" [(ngModel)]="tabelaFreteComponent.tabelaFrete.valor" required>
+                <input matInput placeholder="Valor" type="number" [(ngModel)]="tabelaFreteComponent.valor" required>
             </mat-form-field>
           </div>
         </div>
@@ -265,12 +265,12 @@
         <div class="row">
             <div class="col s12 m3 l3">
               <mat-form-field>
-                <input matInput placeholder="Id" type="number" [(ngModel)]="this.frete.freteId" required>
+                <input matInput placeholder="Id" type="number" [(ngModel)]="this.freteId" required>
               </mat-form-field>
             </div>
             <div class="col s12 m3 l3">
               <mat-form-field>
-                <input matInput placeholder="Peso" type="number" [(ngModel)]="this.frete.peso" required>
+                <input matInput placeholder="Peso" type="number" [(ngModel)]="this.peso" required>
               </mat-form-field>
             </div>
             <div class="col s12 m3 l3">
@@ -280,7 +280,7 @@
             </div>
             <div class="col s12 m3 l3">
               <mat-form-field>
-                <input matInput placeholder="Valor Total" type="number" [(ngModel)]="this.frete.valorTotal" readonly>
+                <input matInput placeholder="Valor Total" type="number" [(ngModel)]="this.valorTotal" readonly>
               </mat-form-field>
             </div>
         </div>
