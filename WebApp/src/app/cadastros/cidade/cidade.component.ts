@@ -96,14 +96,15 @@ export class CidadeComponent implements OnInit {
 
   salvar() {
     this.cidades.push(this.cidade);
+    console.log("Salvou, meu patrão...");
     this.cidade = new Cidade();
-    this.dataSource = new MatTableDataSource<Cidade>(this.cidades);
-    this.dataSource.paginator = this.paginatorCustom;
-    this.dataSource.sort = this.sort;
+    this.atualizaTabela();
   }
 
-  remover() {
-    
+  remover(posicao: number) {
+    this.cidades.splice(posicao, 1);
+    console.log("Removeu, meu patrão...");
+    this.atualizaTabela();
   }
 
   atualizar() {
@@ -111,11 +112,17 @@ export class CidadeComponent implements OnInit {
   }
 
   limpar() {
-
+    
   }
 
   aplicarFiltro(valor: string){
     
+  }
+
+  atualizaTabela() {
+    this.dataSource = new MatTableDataSource<Cidade>(this.cidades);
+    this.dataSource.paginator = this.paginatorCustom;
+    this.dataSource.sort = this.sort;
   }
 
 }

@@ -3,6 +3,7 @@ import { EstadoComponent } from '../estado/estado.component';
 import { CidadeComponent } from '../cidade/cidade.component';
 import { TabelafreteComponent } from '../tabelafrete/tabelafrete.component';
 import { Frete } from '../../models/frete';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-frete',
