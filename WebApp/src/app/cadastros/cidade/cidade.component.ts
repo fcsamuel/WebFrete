@@ -18,8 +18,8 @@ export class CidadeComponent implements OnInit {
   public cidade: Cidade = new Cidade();
   public cidades: Array<Cidade> = new Array<Cidade>();
   public cidadeSelec: Cidade = new Cidade();
-  public estado: Estado;
-  public estados: Array<Estado>;
+  public estado: Estado = new Estado();
+  public estados: Array<Estado> = new Array<Estado>();
   public dataSource: any;
   public palavraChave: string;
   public isExpandido: number = 0;
@@ -27,7 +27,8 @@ export class CidadeComponent implements OnInit {
   @ViewChild(MatPaginator) paginatorCustom: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() { }
+  constructor() {
+   }
 
   ngOnInit() {
   }
@@ -37,13 +38,11 @@ export class CidadeComponent implements OnInit {
   }
 
   carregaDados() {
-    this.estado = new Estado();
     this.estado.estadoId = 1;
     this.estado.descricao = "Paraná";
     this.estado.sigla = "PR";
     this.estados.push(this.estado);
 
-    this.cidade = new Cidade();
     this.cidade.cidadeId = 1;
     this.cidade.descricao = "Toledo";
     this.cidade.estado = this.estado;
@@ -88,6 +87,8 @@ export class CidadeComponent implements OnInit {
     this.cidade.ceps.push("206040853");
     this.cidade.ceps.push("208784057");
     this.cidade.ceps.push("32588-082");
+    this.cidade = new Cidade();
+    this.atualizaTabela();
   }
 
   salvar() {
@@ -114,7 +115,15 @@ export class CidadeComponent implements OnInit {
   }
 
   aplicarFiltro(valor: string){
-    
+    valor = valor.trim(); // Remove whitespace
+    valor = valor.toLowerCase();
+
+    console.log("realiza o filtro com "+valor);
+    this.dataSource.filterPredicate = (data: Cidade, filter: string ) => 
+      data.pessoaId.toString().indexOf(filter) != -1 ||
+      data.nome.toLowerCase().indexOf(filter) != -1;
+  
+    this.dataSource.filter = valor;
   }
 
   atualizaTabela() {

@@ -31,11 +31,17 @@ export class EstadoComponent implements OnInit {
   }
 
   salvar() {
-    
+    this.estados.push(this.estado);
+    console.log("Salvou, meu patrão...");
+    console.log(this.estados);
+    this.estado = new Estado();
+    this.atualizaTabela();
   }
 
-  remover() {
-
+  remover(posicao: number) {
+    this.estados.splice(posicao, 1);
+    console.log("Removeu, meu patrão...");
+    this.atualizaTabela();
   }
 
   atualizar() {
