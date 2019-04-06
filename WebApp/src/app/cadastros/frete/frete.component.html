@@ -13,16 +13,16 @@
         <div class="row">
           <div class="col s12 m2 l2">
               <mat-form-field>
-                  <input matInput placeholder="Id" type="number" [(ngModel)]="cidadeComponent.cidadeId" required>
+                  <input matInput placeholder="Id" type="number" [(ngModel)]="cidadeComponent.cidade.cidadeId" required>
               </mat-form-field>
           </div>
           <div class="col s12 m8 l8">
               <mat-form-field>
-                <input matInput placeholder="Descricao" type="text" [(ngModel)]="cidadeComponent.descricao" required>
+                <input matInput placeholder="Descricao" type="text" [(ngModel)]="cidadeComponent.cidade.descricao" required>
               </mat-form-field>
           </div>
           <div class="col s12 m2 l2">
-            <!--NOME DO COMPONENTE?-->
+            <!--SOLVED-->
             <mat-select placeholder="Estado" name="estado" [(ngModel)]="estadoId">
               <mat-option *ngFor="let e of estados" [value]="e.estadoId">
                 {{e.sigla + " - " + e.descricao}}
@@ -31,7 +31,6 @@
           </div>
         </div>
 
-        <!--TEM COMO DEIXAR NA MESMA LINHA?-->
         <div class="row footer-btn">
           <div class="button-row col s12"> 
             <button mat-raised-button color="blue" (click)="cidadeComponent.limpar()" >Limpar</button>    
@@ -53,10 +52,10 @@
           </div>
         </div>
         
-        <!--NOME DO COMPONENTE?-->
+        <!--SOLVED-->
         <div class="row">
           <div class="col s12 m12 l12">  
-            <mat-table #table [dataSource]="dataSource" matSort class="table-striped">
+            <mat-table #table [dataSource]="cidadeComponent.dataSource" matSort class="table-striped">
               <ng-container matColumnDef="cidadeId">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Código </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.cidadeId}} </mat-cell>>
@@ -92,22 +91,21 @@
         <div class="row">
           <div class="col s12 m2 l2">
             <mat-form-field>
-                <input matInput placeholder="Id" type="number" [(ngModel)]="estadoComponent.estadoId" required>
+                <input matInput placeholder="Id" type="number" [(ngModel)]="estadoComponent.estado.estadoId" required>
             </mat-form-field>
           </div>
           <div class="col s12 m2 l2">
             <mat-form-field>
-                <input matInput placeholder="Sigla" type="text" [(ngModel)]="estadoComponent.sigla" required>
+                <input matInput placeholder="Sigla" type="text" [(ngModel)]="estadoComponent.estado.sigla" required>
             </mat-form-field>
           </div>
           <div class="col s12 m8 l8">
             <mat-form-field>
-                <input matInput placeholder="Descrição" type="text" [(ngModel)]="estadoComponent.descricao" required>
+                <input matInput placeholder="Descrição" type="text" [(ngModel)]="estadoComponent.estado.descricao" required>
             </mat-form-field>
           </div>
         </div>
 
-        <!--TEM COMO DEIXAR NA MESMA LINHA?-->
         <div class="row footer-btn">
           <div class="button-row col s12"> 
             <button mat-raised-button color="blue" (click)="estadoComponent.limpar()" >Limpar</button>    
@@ -129,10 +127,10 @@
           </div>
         </div>
         
-        <!--NOME DO COMPONENTE?-->
+        <!--SOLVED-->
         <div class="row">
           <div class="col s12 m12 l12">  
-            <mat-table #table [dataSource]="dataSource" matSort class="table-striped">
+            <mat-table #table [dataSource]="estadoComponent.dataSource" matSort class="table-striped">
               <ng-container matColumnDef="estadoId">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Código </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.estadoId}} </mat-cell>>
@@ -167,7 +165,7 @@
         </mat-expansion-panel-header>
         <div class="row">
           <div class="col s12 m4 l4">
-            <!--NOME DO COMPONENTE?-->
+            <!--SOLVED-->
             <mat-select placeholder="Origem" name="estado" [(ngModel)]="estadoId">
               <mat-option *ngFor="let e of estados" [value]="e.estadoId">
                 {{e.sigla + " - " + e.descricao}}
@@ -175,7 +173,7 @@
             </mat-select>
           </div>
           <div class="col s12 m4 l4">
-            <!--NOME DO COMPONENTE?-->
+            <!--SOLVED-->
             <mat-select placeholder="Destino" name="estado" [(ngModel)]="estadoId">
               <mat-option *ngFor="let e of estados" [value]="e.estadoId">
                 {{e.sigla + " - " + e.descricao}}
@@ -184,12 +182,11 @@
           </div>
           <div class="col s12 m4 l4">
             <mat-form-field>
-                <input matInput placeholder="Valor" type="number" [(ngModel)]="tabelaFreteComponent.valor" required>
+                <input matInput placeholder="Valor" type="number" [(ngModel)]="tabelaFreteComponent.tabelaFrete.valor" required>
             </mat-form-field>
           </div>
         </div>
 
-        <!--TEM COMO DEIXAR NA MESMA LINHA?-->
         <div class="row footer-btn">
           <div class="button-row col s12"> 
             <button mat-raised-button color="blue" (click)="tabelaFreteComponent.limpar()" >Limpar</button>    
@@ -211,10 +208,10 @@
           </div>
         </div>
         
-        <!--NOME DO COMPONENTE?-->
+        <!--SOLVED-->
         <div class="row">
           <div class="col s12 m12 l12">  
-            <mat-table #table [dataSource]="dataSource" matSort class="table-striped">
+            <mat-table #table [dataSource]="tabelaFreteComponent.dataSource" matSort class="table-striped">
               <ng-container matColumnDef="origem">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Origem </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.origem}} </mat-cell>>
@@ -249,7 +246,7 @@
         </mat-expansion-panel-header>
         <div class="row">
           <div class="col s12 m6 l6">
-            <!--NOME DO COMPONENTE?-->
+            <!--SOLVED-->
             <mat-select placeholder="Origem" name="estado" [(ngModel)]="estadoId">
               <mat-option *ngFor="let e of estados" [value]="e.estadoId">
                 {{e.sigla + " - " + e.descricao}}
@@ -257,7 +254,7 @@
             </mat-select>
           </div>
           <div class="col s12 m6 l6">
-            <!--NOME DO COMPONENTE?-->
+            <!--SOLVED-->
             <mat-select placeholder="Destino" name="estado" [(ngModel)]="estadoId">
               <mat-option *ngFor="let e of estados" [value]="e.estadoId">
                 {{e.sigla + " - " + e.descricao}}
@@ -268,12 +265,12 @@
         <div class="row">
             <div class="col s12 m3 l3">
               <mat-form-field>
-                <input matInput placeholder="Id" type="number" [(ngModel)]="this.freteId" required>
+                <input matInput placeholder="Id" type="number" [(ngModel)]="this.frete.freteId" required>
               </mat-form-field>
             </div>
             <div class="col s12 m3 l3">
               <mat-form-field>
-                <input matInput placeholder="Peso" type="number" [(ngModel)]="this.peso" required>
+                <input matInput placeholder="Peso" type="number" [(ngModel)]="this.frete.peso" required>
               </mat-form-field>
             </div>
             <div class="col s12 m3 l3">
@@ -283,12 +280,11 @@
             </div>
             <div class="col s12 m3 l3">
               <mat-form-field>
-                <input matInput placeholder="Valor Total" type="number" [(ngModel)]="this.valorTotal" readonly>
+                <input matInput placeholder="Valor Total" type="number" [(ngModel)]="this.frete.valorTotal" readonly>
               </mat-form-field>
             </div>
         </div>
 
-        <!--TEM COMO DEIXAR NA MESMA LINHA?-->
         <div class="row footer-btn">
           <div class="button-row col s12"> 
             <button mat-raised-button color="blue" (click)="this.limpar()" >Limpar</button>    
@@ -310,10 +306,10 @@
           </div>
         </div>
         
-        <!--NOME DO COMPONENTE?-->
+        <!--SOLVED-->
         <div class="row">
           <div class="col s12 m12 l12">  
-            <mat-table #table [dataSource]="dataSource" matSort class="table-striped">
+            <mat-table #table [dataSource]="this.dataSource" matSort class="table-striped">
               <ng-container matColumnDef="freteId">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.freteId}} </mat-cell>
