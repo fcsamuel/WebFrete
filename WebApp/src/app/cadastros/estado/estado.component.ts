@@ -34,21 +34,28 @@ export class EstadoComponent implements OnInit {
   }
 
   salvar() {
-    this.estados.push(this.estado);
-    console.log("Salvou, meu patrão...");
+    if(this.estadoAtualilzar == null) {
+      this.estados.push(this.estado);
+      console.log("Salvou, meu patrão...");
+    }else {
+      this.estados[this.estados.indexOf(this.estadoAtualilzar)] = this.estado;
+      console.log("Atualizou, meu patrão...");
+    }
     console.log(this.estados);
     this.estado = new Estado();
     this.atualizaTabela();
   }
 
   remover(estadoRemover: Estado) {
-    
+    this.estados.splice(this.estados.indexOf(estadoRemover), 1);
     console.log("Removeu, meu patrão...");
     this.atualizaTabela();
   }
 
   setFields(estadoAtualizar: Estado) {
-    
+    this.estadoAtualilzar = estadoAtualizar;
+    this.estado = new Estado();
+    this.estado = estadoAtualizar;
   }
 
   limpar() {

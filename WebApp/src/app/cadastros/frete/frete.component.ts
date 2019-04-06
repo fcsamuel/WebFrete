@@ -39,22 +39,29 @@ export class FreteComponent implements OnInit {
   }
 
   salvar() {
-    this.fretes.push(this.frete);
-    console.log("Salvou, meu patrão...");
+    if(this.freteAtualizar == null) {
+      this.fretes.push(this.frete);
+      console.log("Salvou, meu patrão...");
+    }else {
+      this.fretes[this.fretes.indexOf(this.freteAtualizar)] = this.frete;
+      console.log("Atualizou, meu patrão...");
+    }
     console.log(this.fretes);
     this.frete = new Frete();
     this.atualizaTabela();
   }
 
   remover(freteRemover: Frete) {
-    
+    this.fretes.splice(this.fretes.indexOf(freteRemover), 1);
     console.log("Removeu, meu patrão...");
     console.log(this.fretes);
     this.atualizaTabela();
   }
 
   setFields(freteAtualizar: Frete) {
-
+    this.freteAtualizar = freteAtualizar;
+    this.freteAtualizar = new Frete();
+    this.freteAtualizar = freteAtualizar;
   }
 
   limpar() {
