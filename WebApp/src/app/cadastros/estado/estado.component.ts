@@ -11,9 +11,10 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class EstadoComponent implements OnInit {
 
-  displayedColumns: string[] = ['estadoId', 'sigla', 'descricao'];
+  displayedColumns: string[] = ['estadoId', 'sigla', 'descricao', 'editColumn'];
 
   public estado: Estado = new Estado();
+  public estadoAtualilzar: Estado = new Estado();
   public estados: Array<Estado> = new Array<Estado>();
   public isExpandido: number = 0;
   public dataSource: any;
@@ -40,13 +41,13 @@ export class EstadoComponent implements OnInit {
     this.atualizaTabela();
   }
 
-  remover(posicao: number) {
-    this.estados.splice(posicao, 1);
+  remover(estadoRemover: Estado) {
+    
     console.log("Removeu, meu patrão...");
     this.atualizaTabela();
   }
 
-  atualizar() {
+  setFields(estadoAtualizar: Estado) {
     
   }
 

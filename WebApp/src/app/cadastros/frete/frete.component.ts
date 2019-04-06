@@ -14,13 +14,14 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class FreteComponent implements OnInit {
 
-  displayedColumns: string[] = ['freteId', 'origem', 'destino', 'peso', 'valorTotal'];
+  displayedColumns: string[] = ['freteId', 'origem', 'destino', 'peso', 'valorTotal', 'editColumn'];
 
   public estadoComponent: EstadoComponent = new EstadoComponent;
   public cidadeComponent: CidadeComponent = new CidadeComponent;
   public tabelaFreteComponent: TabelafreteComponent = new TabelafreteComponent;
   
   public frete: Frete = new Frete();
+  public freteAtualizar: Frete = new Frete();
   public fretes: Array<Frete> = new Array<Frete>();
   public isExpandido: number = 0;
   public dataSource: any;
@@ -45,14 +46,14 @@ export class FreteComponent implements OnInit {
     this.atualizaTabela();
   }
 
-  remover(posicao: number) {
-    this.fretes.splice(posicao, 1);
+  remover(freteRemover: Frete) {
+    
     console.log("Removeu, meu patrão...");
     console.log(this.fretes);
     this.atualizaTabela();
   }
 
-  atualizar() {
+  setFields(freteAtualizar: Frete) {
 
   }
 

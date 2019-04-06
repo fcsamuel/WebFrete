@@ -10,9 +10,10 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class TabelafreteComponent implements OnInit {
 
-  displayedColumns: string[] = ['origem', 'destino', 'valor'];
+  displayedColumns: string[] = ['origem', 'destino', 'valor', 'editColumn'];
 
   public tabelaFrete: TabelaFrete = new TabelaFrete();
+  public tabelaFreteAtualizar: TabelaFrete = new TabelaFrete();
   public tabelasFretes: Array<TabelaFrete> = new Array<TabelaFrete>();
   public isExpandido: number = 0;
   public dataSource: any;
@@ -33,11 +34,11 @@ export class TabelafreteComponent implements OnInit {
 
   }
 
-  remover() {
+  remover(tabelaFreteRemover: TabelaFrete) {
 
   }
 
-  atualizar() {
+  setFields(tabelaFreteAtualizar: TabelaFrete) {
     
   }
 
