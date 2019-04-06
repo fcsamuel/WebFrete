@@ -14,7 +14,7 @@ import { EstadoComponent } from '../estado/estado.component';
 })
 export class CidadeComponent implements OnInit {
 
-  displayedColumns: string[] = ['cidadeId', 'descricao', 'estado'];
+  displayedColumns: string[] = ['cidadeId', 'descricao', 'estado', 'editColumn'];
   
   public cidade: Cidade = new Cidade();
   public cidades: Array<Cidade> = new Array<Cidade>();
@@ -151,7 +151,7 @@ export class CidadeComponent implements OnInit {
   }
 
   remover(posicao: number) {
-    this.cidades.splice(posicao, 1);
+    this.cidades.splice(posicao-1, 1);
     console.log("Removeu, meu patrão...");
     this.atualizaTabela();
   }
