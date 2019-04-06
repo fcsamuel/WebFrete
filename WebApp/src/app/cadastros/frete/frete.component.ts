@@ -22,7 +22,8 @@ export class FreteComponent implements OnInit {
   
   public frete: Frete = new Frete();
   public fretes: Array<Frete> = new Array<Frete>();
-  public isExpandido: number;
+  public isExpandido: number = 0;
+
   public dataSource: any;
 
   @ViewChild(MatPaginator) paginatorCustom: MatPaginator;
@@ -31,9 +32,6 @@ export class FreteComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.frete = new Frete();
-    this.fretes = new Array<Frete>();
-    this.isExpandido = 0;
   }
 
   setExpandido() {
@@ -41,11 +39,18 @@ export class FreteComponent implements OnInit {
   }
 
   salvar() {
-    
+    this.fretes.push(this.frete);
+    console.log("Salvou, meu patrão...");
+    console.log(this.fretes);
+    this.frete = new Frete();
+    this.atualizaTabela();
   }
 
-  remover() {
-
+  remover(posicao: number) {
+    this.fretes.splice(posicao, 1);
+    console.log("Removeu, meu patrão...");
+    console.log(this.fretes);
+    this.atualizaTabela();
   }
 
   atualizar() {
