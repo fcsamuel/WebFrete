@@ -15,14 +15,14 @@ export class CidadeComponent implements OnInit {
 
   displayedColumns: string[] = ['cidadeId', 'descricao', 'estado'];
   
-  public cidade: Cidade;
-  public cidades: Array<Cidade>;
+  public cidade: Cidade = new Cidade();
+  public cidades: Array<Cidade> = new Array<Cidade>();
   public cidadeSelec: Cidade = new Cidade();
   public estado: Estado;
   public estados: Array<Estado>;
   public dataSource: any;
   public palavraChave: string;
-  public isExpandido: number;
+  public isExpandido: number = 0;
 
   @ViewChild(MatPaginator) paginatorCustom: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -30,10 +30,6 @@ export class CidadeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.cidade = new Cidade();
-    this.cidades = new Array<Cidade>();
-    this.carregaDados();
-    this.isExpandido = 0;
   }
 
   setExpandido() {
@@ -97,6 +93,7 @@ export class CidadeComponent implements OnInit {
   salvar() {
     this.cidades.push(this.cidade);
     console.log("Salvou, meu patrão...");
+    console.log(this.cidades);
     this.cidade = new Cidade();
     this.atualizaTabela();
   }
@@ -112,7 +109,8 @@ export class CidadeComponent implements OnInit {
   }
 
   limpar() {
-    
+    this.cidade = new Cidade();
+    console.log("Limpou, meu patrão...");
   }
 
   aplicarFiltro(valor: string){

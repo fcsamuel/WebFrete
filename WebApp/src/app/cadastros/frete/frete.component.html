@@ -1,7 +1,7 @@
-<!--CEP..........................................-->
+<!--#region CEP..........................................-->
+<!-- #endregion-->
 
-
-<!--CIDADE..........................................-->
+<!--#region CIDADE.......................................-->
 <div class="row">
   <div class="col s12">
     <mat-accordion>
@@ -13,12 +13,12 @@
         <div class="row">
           <div class="col s12 m2 l2">
               <mat-form-field>
-                  <input matInput placeholder="Id" type="number" [(ngModel)]="cidadeComponent.cidadeId" required>
+                  <input matInput placeholder="Id" type="number" [(ngModel)]="cidadeComponent.cidade.cidadeId" required>
               </mat-form-field>
           </div>
           <div class="col s12 m8 l8">
               <mat-form-field>
-                <input matInput placeholder="Descricao" type="text" [(ngModel)]="cidadeComponent.descricao" required>
+                <input matInput placeholder="Descricao" type="text" [(ngModel)]="cidadeComponent.cidade.descricao" required>
               </mat-form-field>
           </div>
           <div class="col s12 m2 l2">
@@ -78,8 +78,9 @@
     </mat-accordion>
   </div>
 </div>
+<!-- #endregion-->
 
-<!--ESTADO..........................................-->
+<!--#region ESTADO.......................................-->
 <div class="row">
   <div class="col s12">
     <mat-accordion>
@@ -91,17 +92,17 @@
         <div class="row">
           <div class="col s12 m2 l2">
             <mat-form-field>
-                <input matInput placeholder="Id" type="number" [(ngModel)]="estadoComponent.estadoId" required>
+                <input matInput placeholder="Id" type="number" [(ngModel)]="estadoComponent.estado.estadoId" required>
             </mat-form-field>
           </div>
           <div class="col s12 m2 l2">
             <mat-form-field>
-                <input matInput placeholder="Sigla" type="text" [(ngModel)]="estadoComponent.sigla" required>
+                <input matInput placeholder="Sigla" type="text" [(ngModel)]="estadoComponent.estado.sigla" required>
             </mat-form-field>
           </div>
           <div class="col s12 m8 l8">
             <mat-form-field>
-                <input matInput placeholder="Descrição" type="text" [(ngModel)]="estadoComponent.descricao" required>
+                <input matInput placeholder="Descrição" type="text" [(ngModel)]="estadoComponent.estado.descricao" required>
             </mat-form-field>
           </div>
         </div>
@@ -153,8 +154,9 @@
     </mat-accordion>
   </div>
 </div>
+<!-- #endregion-->
 
-<!--TABELA FRETE..........................................-->
+<!--#region TABELA FRETE.................................-->
 <div class="row">
   <div class="col s12">
     <mat-accordion>
@@ -182,7 +184,7 @@
           </div>
           <div class="col s12 m4 l4">
             <mat-form-field>
-                <input matInput placeholder="Valor" type="number" [(ngModel)]="tabelaFreteComponent.valor" required>
+                <input matInput placeholder="Valor" type="number" [(ngModel)]="tabelaFreteComponent.tabelaFrete.valor" required>
             </mat-form-field>
           </div>
         </div>
@@ -234,8 +236,9 @@
     </mat-accordion>
   </div>
 </div>
+<!-- #endregion-->
 
-<!--FRETE..........................................-->
+<!--#region FRETE........................................-->
 <div class="row">
   <div class="col s12">
     <mat-accordion>
@@ -265,12 +268,12 @@
         <div class="row">
             <div class="col s12 m3 l3">
               <mat-form-field>
-                <input matInput placeholder="Id" type="number" [(ngModel)]="this.freteId" required>
+                <input matInput placeholder="Id" type="number" [(ngModel)]="this.frete.freteId" required>
               </mat-form-field>
             </div>
             <div class="col s12 m3 l3">
               <mat-form-field>
-                <input matInput placeholder="Peso" type="number" [(ngModel)]="this.peso" required>
+                <input matInput placeholder="Peso" type="number" [(ngModel)]="this.frete.peso" required>
               </mat-form-field>
             </div>
             <div class="col s12 m3 l3">
@@ -280,7 +283,7 @@
             </div>
             <div class="col s12 m3 l3">
               <mat-form-field>
-                <input matInput placeholder="Valor Total" type="number" [(ngModel)]="this.valorTotal" readonly>
+                <input matInput placeholder="Valor Total" type="number" [(ngModel)]="this.frete.valorTotal" readonly>
               </mat-form-field>
             </div>
         </div>
@@ -314,11 +317,11 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.freteId}} </mat-cell>
               </ng-container>
-              <ng-container matColumnDef="tabelaFreteComponent.origem">
+              <ng-container matColumnDef="tabelaFreteComponent.tabelaFrete.origem">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Origem </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.tabelaFreteComponent.origem}} </mat-cell>>
               </ng-container>
-              <ng-container matColumnDef="tabelaFreteComponent.destino">
+              <ng-container matColumnDef="tabelaFreteComponent.tabelaFrete.destino">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Destino </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.tabelaFreteComponent.destino}} </mat-cell>
               </ng-container>
@@ -344,3 +347,4 @@
     </mat-accordion>
   </div>
 </div>
+<!-- #endregion-->

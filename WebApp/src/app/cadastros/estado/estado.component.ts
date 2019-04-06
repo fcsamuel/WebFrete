@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Estado } from '../../models/estado';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-estado',
@@ -10,14 +13,17 @@ export class EstadoComponent implements OnInit {
 
   displayedColumns: string[] = ['estadoId', 'sigla', 'descricao'];
 
-  public estados: Array<Estado>;
-  public isExpandido: number;
+  public estado: Estado = new Estado();
+  public estados: Array<Estado> = new Array<Estado>();
+  public isExpandido: number = 0;
+  public dataSource: any;
+
+  @ViewChild(MatPaginator) paginatorCustom: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor() { }
 
   ngOnInit() {
-    this.estados = new Array<Estado>();
-    this.isExpandido = 0;
   }
 
   setExpandido() {
@@ -42,6 +48,12 @@ export class EstadoComponent implements OnInit {
 
   aplicarFiltro(valor: string){
     
+  }
+
+  atualizaTabela() {
+    this.dataSource = new MatTableDataSource<Estado>(this.estados);
+    this.dataSource.paginator = this.paginatorCustom;
+    this.dataSource.sort = this.sort;
   }
 
 }
