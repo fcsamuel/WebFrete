@@ -14,14 +14,14 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class FreteComponent implements OnInit {
 
-  displayedColumns: string[] = ['freteId', 'tabelaFreteComponent.tabelaFrete.origem', 'tabelaFreteComponent.tabelaFrete.destino', 'peso', 'valorTotal'];
+  displayedColumns: string[] = ['freteId', 'origem', 'destino', 'peso', 'valorTotal'];
 
   public estadoComponent: EstadoComponent = new EstadoComponent;
   public cidadeComponent: CidadeComponent = new CidadeComponent;
   public tabelaFreteComponent: TabelafreteComponent = new TabelafreteComponent;
   
-  public frete: Frete;
-  public fretes: Array<Frete>;
+  public frete: Frete = new Frete();
+  public fretes: Array<Frete> = new Array<Frete>();
   public isExpandido: number;
   public dataSource: any;
 
