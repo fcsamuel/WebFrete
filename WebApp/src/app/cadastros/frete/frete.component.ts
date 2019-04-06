@@ -23,7 +23,6 @@ export class FreteComponent implements OnInit {
   public frete: Frete = new Frete();
   public fretes: Array<Frete> = new Array<Frete>();
   public isExpandido: number = 0;
-
   public dataSource: any;
 
   @ViewChild(MatPaginator) paginatorCustom: MatPaginator;
@@ -58,6 +57,8 @@ export class FreteComponent implements OnInit {
   }
 
   limpar() {
+    this.frete = new Frete();
+    console.log("Limpou, meu patrão...");
     
   }
 

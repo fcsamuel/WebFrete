@@ -51,7 +51,8 @@ export class EstadoComponent implements OnInit {
   }
 
   limpar() {
-    
+    this.estado = new Estado();
+    console.log("Limpou, meu patrão...");
   }
 
   aplicarFiltro(valor: string){

@@ -19,6 +19,7 @@ export class CidadeComponent implements OnInit {
   public cidade: Cidade = new Cidade();
   public cidades: Array<Cidade> = new Array<Cidade>();
   public cidadeSelec: Cidade = new Cidade();
+  public cidadeAtualizar: Cidade = null;
   public estadoComponent: EstadoComponent = new EstadoComponent;
   public dataSource: any;
   public palavraChave: string;
@@ -143,26 +144,34 @@ export class CidadeComponent implements OnInit {
   }*/
 
   salvar() {
-    this.cidades.push(this.cidade);
-    console.log("Salvou, meu patrão...");
+    if(this.cidadeAtualizar == null) {
+      this.cidades.push(this.cidade);
+      console.log("Salvou, meu patrão...");
+    }else {
+      this.cidades[this.cidades.indexOf(this.cidadeAtualizar)] = this.cidade;
+      console.log("Atualizou, meu patrão...");
+    }
+    this.cidadeAtualizar = null;
     this.cidade = new Cidade();
     this.atualizaTabela();
     console.log(this.cidades);
   }
 
-  remover(posicao: number) {
-    this.cidades.splice(posicao-1, 1);
+  remover(cidadeRemover: Cidade) {
+    this.cidades.splice(this.cidades.indexOf(cidadeRemover), 1);
     console.log("Removeu, meu patrão...");
     this.atualizaTabela();
-  }
-
-  atualizar() {
-    
   }
 
   limpar() {
     this.cidade = new Cidade();
     console.log("Limpou, meu patrão...");
+  }
+
+  setFields(cidadeAtualizar: Cidade) {
+    this.cidadeAtualizar = cidadeAtualizar;
+    this.cidade = new Cidade();
+    this.cidade = cidadeAtualizar;
   }
 
   aplicarFiltro(valor: string){

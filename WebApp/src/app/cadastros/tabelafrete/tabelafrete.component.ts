@@ -42,7 +42,8 @@ export class TabelafreteComponent implements OnInit {
   }
 
   limpar() {
-    
+    this.tabelaFrete = new TabelaFrete();
+    console.log("Limpou, meu patrão...");
   }
 
   aplicarFiltro(valor: string){
