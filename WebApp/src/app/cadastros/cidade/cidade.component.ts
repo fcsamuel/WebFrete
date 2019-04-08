@@ -108,48 +108,14 @@ export class CidadeComponent implements OnInit {
     this.cidade = new Cidade();
     this.atualizaTabela();
   }
-  /*carregaDados() {
-    this.estado = new Estado();
-    this.estado.estadoId = 1;
-    this.estado.descricao = "Paraná";
-    this.estado.sigla = "PR";
-    this.estadoComponent.estados.push(this.estado);
-
-    this.cidade = new Cidade();
-    this.cidade.cidadeId = 1;
-    this.cidade.descricao = "Toledo";
-    this.cidade.estado = this.estado;
-
-    this.cidade = new Cidade();
-    this.cidade.cidadeId = 2;
-    this.cidade.descricao = "Cascavel";
-    this.cidade.estado = this.estado;
-
-    this.estado = new Estado();
-    this.estado.estadoId = 2;
-    this.estado.descricao = "Rio Grande do Sul";
-    this.estado.sigla = "RS";
-    this.estadoComponent.estados.push(this.estado);
-    
-    this.cidade = new Cidade();
-    this.cidade.cidadeId = 3;
-    this.cidade.descricao = "Porto Alegre";
-    this.cidade.estado = this.estado;
-
-    this.cidade = new Cidade();
-    this.cidade.cidadeId = 4;
-    this.cidade.descricao = "Lajeado";
-    this.cidade.estado = this.estado;
-    console.log(this.estadoComponent.estados);
-  }*/
 
   salvar() {
     if(this.cidadeAtualizar == null) {
       this.cidades.push(this.cidade);
       console.log("Salvou, meu patrão...");
+      console.log(this.cidade.estado.descricao);
     }else {
-      this.cidades[this.cidades.indexOf(this.cidadeAtualizar)] = this.cidade;
-      console.log("Atualizou, meu patrão...");
+      this.atualizar();
     }
     console.log(this.cidades);
     this.cidadeAtualizar = null;
@@ -161,6 +127,11 @@ export class CidadeComponent implements OnInit {
     this.cidades.splice(this.cidades.indexOf(cidadeRemover), 1);
     console.log("Removeu, meu patrão...");
     this.atualizaTabela();
+  }
+
+  atualizar() {
+    this.cidades[this.cidades.indexOf(this.cidadeAtualizar)] = this.cidade;
+    console.log("Atualizou, meu patrão...");
   }
 
   setFields(cidadeAtualizar: Cidade) {
