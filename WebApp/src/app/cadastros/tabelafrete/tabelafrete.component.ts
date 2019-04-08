@@ -10,11 +10,12 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class TabelafreteComponent implements OnInit {
 
-  displayedColumns: string[] = ['origem', 'destino', 'valor', 'editColumn'];
+  displayedColumns: string[] = ['id', 'origem', 'destino', 'valor', 'editColumn'];
 
   public tabelaFrete: TabelaFrete = new TabelaFrete();
   public tabelaFreteAtualizar: TabelaFrete = null;
-  public tabelasFretes: Array<TabelaFrete> = new Array<TabelaFrete>();
+  public tabelaFretes: Array<TabelaFrete> = new Array<TabelaFrete>();
+  public tabelaFreteId: number;
   public isExpandido: number = 0;
   public dataSource: any;
 
@@ -31,15 +32,33 @@ export class TabelafreteComponent implements OnInit {
   }
 
   salvar() {
+    if(this.tabelaFreteAtualizar == null) {
+      this.tabelaFretes.push(this.tabelaFrete);
+      console.log("Salvou, meu patrão...");
+    }else {
+      this.atualizar();
+    }
+    console.log(this.tabelaFretes);
+    this.tabelaFreteAtualizar = null;
+    this.tabelaFrete = new TabelaFrete();
+    this.atualizaTabela();
+  }
 
+  atualizar() {
+    this.tabelaFretes[this.tabelaFretes.indexOf(this.tabelaFreteAtualizar)] = this.tabelaFrete;
+    console.log("Atualizou, meu patrão...");
   }
 
   remover(tabelaFreteRemover: TabelaFrete) {
-
+    this.tabelaFretes.splice(this.tabelaFretes.indexOf(tabelaFreteRemover), 1);
+    console.log("Removeu, meu patrão...");
+    this.atualizaTabela();
   }
 
   setFields(tabelaFreteAtualizar: TabelaFrete) {
-    
+    this.tabelaFreteAtualizar = tabelaFreteAtualizar;
+    this.tabelaFrete = new TabelaFrete();
+    this.tabelaFrete = tabelaFreteAtualizar;
   }
 
   limpar() {
@@ -47,12 +66,20 @@ export class TabelafreteComponent implements OnInit {
     console.log("Limpou, meu patrão...");
   }
 
-  aplicarFiltro(valor: string){
-    
-  }
+  /*aplicarFiltro(valor: string){
+    valor = valor.trim();
+    valor = valor.toLowerCase();
+
+    console.log("realiza o filtro com "+valor);
+    this.dataSource.filterPredicate = (data: TabelaFrete, filter: string ) => 
+      data.tabelaFreteId.toString().indexOf(filter) != -1 ||
+      data..toLowerCase().indexOf(filter) != -1;
+  
+    this.dataSource.filter = valor;
+  }*/
 
   atualizaTabela() {
-    this.dataSource = new MatTableDataSource<TabelaFrete>(this.tabelasFretes);
+    this.dataSource = new MatTableDataSource<TabelaFrete>(this.tabelaFretes);
     this.dataSource.paginator = this.paginatorCustom;
     this.dataSource.sort = this.sort;
   }
