@@ -65,7 +65,7 @@
               </ng-container>
               <ng-container matColumnDef="estado">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.estado}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.estado.descricao}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="editColumn">
                 <mat-header-cell *matHeaderCellDef></mat-header-cell>
@@ -185,7 +185,12 @@
           <mat-panel-description>Cadastro de Tabelas de Frete</mat-panel-description>
         </mat-expansion-panel-header>
         <div class="row">
-          <div class="col s12 m4 l4">
+          <div class = "col s12 m3 l3">
+              <mat-form-field>
+                  <input matInput placeholder="Id" type="number" [(ngModel)]="tabelaFreteComponent.tabelaFrete.tabelaFreteId" required>
+              </mat-form-field>
+          </div>
+          <div class = "col s12 m3 l3">
             <mat-form-field>
               <mat-select placeholder="Origem" name="estadoOrigem" [(ngModel)]="tabelaFreteComponent.tabelaFrete.origem" (selectionChange)="estadoComponent.atualizaListBox()">
                 <mat-option *ngFor="let e of estadoComponent.estados" [value]="e.estadoId">
@@ -194,7 +199,7 @@
               </mat-select>
             </mat-form-field>
           </div>
-          <div class="col s12 m4 l4">
+          <div class = "col s12 m3 l3">
             <mat-form-field>
               <mat-select placeholder="Destino" name="estadoDestino" [(ngModel)]="tabelaFreteComponent.tabelaFrete.destino" (selectionChange)="estadoComponent.atualizaListBox()">
                 <mat-option *ngFor="let e of estadoComponent.estados" [value]="e.estadoId">
@@ -203,7 +208,7 @@
               </mat-select>
             </mat-form-field>
           </div>
-          <div class="col s12 m4 l4">
+          <div class = "col s12 m3 l3">
             <mat-form-field>
                 <input matInput placeholder="Valor" type="number" [(ngModel)]="tabelaFreteComponent.tabelaFrete.valor" required>
             </mat-form-field>
@@ -233,11 +238,15 @@
         <div class="row">
           <div class="col s12 m12 l12">  
             <mat-table #table [dataSource]="tabelaFreteComponent.dataSource" matSort class="table-striped">
+              <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.tabelaFreteId}} </mat-cell>>
+              </ng-container>
               <ng-container matColumnDef="origem">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Origem </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.origem}} </mat-cell>>
               </ng-container>
-              <ng-container matColumnDef="destino">
+              <ng-container matColumnDef="destino"> 
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Destino </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.destino}} </mat-cell>
               </ng-container>
