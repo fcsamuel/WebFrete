@@ -71,7 +71,17 @@ export class FreteComponent implements OnInit {
   }
 
   aplicarFiltro(valor: string){
-    
+    valor = valor.trim();
+    valor = valor.toLowerCase();
+
+    console.log("realiza o filtro com "+valor);
+    this.dataSource.filterPredicate = (data: Frete, filter: string ) => 
+      data.freteId.toString().indexOf(filter) != -1 ||
+      data.origem.descricao.toLowerCase().indexOf(filter) != -1 ||
+      data.destino.descricao.toLowerCase().indexOf(filter) != -1 ||
+      data.destino.descricao.toLowerCase().indexOf(filter) != -1;
+  
+    this.dataSource.filter = valor;
   }
 
   atualizaTabela() {
