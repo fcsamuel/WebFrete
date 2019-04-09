@@ -1,4 +1,78 @@
 <!--#region CEP..........................................-->
+
+<div class="row">
+  <div class="col s12">
+    <mat-accordion>
+      <mat-expansion-panel name="panelCeps" [extended]="cidadeComponent.isExpandido === 1" (opened)="cidadeComponent.setExpandidoCep()">
+      </mat-expansion-panel-header>
+        <mat-panel-tite>CEP</mat-panel-tite>
+        <mat-panel-description>Cadastro de CEPs</mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="row">
+        <div class="col s12 m6 l6">
+          <mat-form-field>
+              <mat-select placeholder="CEP" name="cep" [(ngModel)]="cidadeComponent.cidade.ceps" (selectionChange)="cidadeComponent.atualizaListBoxCeps()">
+                <mat-option *ngFor="let e of estadoComponent.estados" [value]="e.estadoId">
+                  {{e.sigla + " - " + e.descricao}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col s12 m6 l6">
+            <mat-form-field>
+              <input matInput placeholder="CEP" type="text" [(ngModel)]="cidadeComponent.cidade.ceps.push($event.target.value)" required>
+            </mat-form-field>
+        </div>
+      </div>
+      <div class="row heading">
+        <div class="col s12">
+          <div class="heading__tools">
+            <div class="search">
+              <mat-form-field>
+                <mat-icon svgIcon="slidenav-search"></mat-icon>
+                <input matInput id="pesquisarId" name="pesquisar" placeholder="Pesquisar" 
+                (keyup)="cidadeComponent.aplicarFiltro($event.target.value)">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 m12 l12">  
+          <mat-table #table [dataSource]="cidadeComponent.dataSource" matSort class="table-striped">
+            <ng-container matColumnDef="descricaoCidade">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Cidade </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.descricao}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="siglaEstado">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.estado.sigla}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="cep">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Cep </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.cep}} </mat-cell>
+              </ng-container>
+            <ng-container matColumnDef="editColumn">
+              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <button mat-button (click)="cidadeComponent.setFields(element)">
+                  <mat-icon svgIcon="form-edit"></mat-icon>
+                </button>
+                <button mat-button (click)="cidadeComponent.remover(element)">
+                  <mat-icon svgIcon="form-trash"></mat-icon>
+                </button>
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="cidadeComponent.displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: cidadeComponent.displayedColumns;"></mat-row>
+          </mat-table>  
+          <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>  
+        </div>
+      </div>
+    </mat-accordion>
+  </div>
+</div>
+
 <!-- #endregion-->
 
 <!--#region CIDADE.......................................-->

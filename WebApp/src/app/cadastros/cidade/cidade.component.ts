@@ -24,6 +24,7 @@ export class CidadeComponent implements OnInit {
   public dataSource: any;
   public palavraChave: string;
   public isExpandido: number = 0;
+  public isExpandidoCep: number = 0;
 
   @ViewChild(MatPaginator) paginatorCustom: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -32,6 +33,10 @@ export class CidadeComponent implements OnInit {
    }
 
   ngOnInit() {
+  }
+
+  setExpandidoCep() {
+    this.isExpandidoCep = 1;
   }
 
   setExpandido() {
