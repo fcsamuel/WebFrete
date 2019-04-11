@@ -3,6 +3,7 @@ import { Estado } from '../../models/estado';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Cidade } from '../../models/cidade';
 
 @Component({
   selector: 'app-estado',
@@ -35,11 +36,11 @@ export class EstadoComponent implements OnInit {
 
   salvar() {
     if(this.estadoAtualilzar == null) {
+      this.estado.cidades = new Array<Cidade>();
       this.estados.push(this.estado);
       console.log("Salvou, meu patrão...");
     }else {
-      this.estados[this.estados.indexOf(this.estadoAtualilzar)] = this.estado;
-      console.log("Atualizou, meu patrão...");
+      this.atualizar();
     }
     console.log(this.estados);
     this.estadoAtualilzar = null;
@@ -51,6 +52,11 @@ export class EstadoComponent implements OnInit {
     this.estados.splice(this.estados.indexOf(estadoRemover), 1);
     console.log("Removeu, meu patrão...");
     this.atualizaTabela();
+  }
+
+  atualizar() {
+    this.estados[this.estados.indexOf(this.estadoAtualilzar)] = this.estado;
+    console.log("Atualizou, meu patrão...");
   }
 
   setFields(estadoAtualizar: Estado) {
@@ -65,24 +71,22 @@ export class EstadoComponent implements OnInit {
   }
 
   aplicarFiltro(valor: string){
-    
+    valor = valor.trim(); // Remove whitespace
+    valor = valor.toLowerCase();
+
+    console.log("realiza o filtro com "+valor);
+    this.dataSource.filterPredicate = (data: Estado, filter: string ) => 
+      data.estadoId.toString().indexOf(filter) != -1 ||
+      data.sigla.toLowerCase().indexOf(filter) != -1 ||
+      data.descricao.toLowerCase().indexOf(filter) != -1;
+  
+    this.dataSource.filter = valor;
   }
 
   atualizaTabela() {
     this.dataSource = new MatTableDataSource<Estado>(this.estados);
     this.dataSource.paginator = this.paginatorCustom;
     this.dataSource.sort = this.sort;
-  }
-
-  atualizaListBox() {
-    console.log("Atualizar Listbox, meu patrão");
-    let id = this.estadoSelId;
-    let estadoSel;
-    this.estados.forEach(function (item) {
-      if (item.estadoId == id) {
-        estadoSel = item;
-      }
-    });
   }
 
 }

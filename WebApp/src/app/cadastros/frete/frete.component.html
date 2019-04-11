@@ -1,5 +1,5 @@
 <!--#region CEP..........................................-->
-
+<!--
 <div class="row">
   <div class="col s12">
     <mat-accordion>
@@ -72,7 +72,7 @@
     </mat-accordion>
   </div>
 </div>
-
+-->
 <!-- #endregion-->
 
 <!--#region CIDADE.......................................-->
@@ -97,8 +97,8 @@
           </div>
           <div class="col s12 m2 l2">
             <mat-form-field>
-              <mat-select placeholder="Estado" name="estado" [(ngModel)]="cidadeComponent.cidade.estado" (selectionChange)="estadoComponent.atualizaListBox()">
-                <mat-option *ngFor="let e of estadoComponent.estados" [value]="e.estadoId">
+              <mat-select placeholder="Estado" name="estado" [(ngModel)]="cidadeComponent.estado">
+                <mat-option *ngFor="let e of estadoComponent.estados" [value]="e">
                   {{e.sigla + " - " + e.descricao}}
                 </mat-option>
               </mat-select>
@@ -266,8 +266,8 @@
           </div>
           <div class = "col s12 m3 l3">
             <mat-form-field>
-              <mat-select placeholder="Origem" name="estadoOrigem" [(ngModel)]="tabelaFreteComponent.tabelaFrete.origem" (selectionChange)="estadoComponent.atualizaListBox()">
-                <mat-option *ngFor="let e of estadoComponent.estados" [value]="e.estadoId">
+              <mat-select placeholder="Origem" name="estadoOrigem" [(ngModel)]="tabelaFreteComponent.tabelaFrete.origem">
+                <mat-option *ngFor="let e of estadoComponent.estados" [value]="e">
                   {{e.sigla + " - " + e.descricao}}
                 </mat-option>
               </mat-select>
@@ -275,8 +275,8 @@
           </div>
           <div class = "col s12 m3 l3">
             <mat-form-field>
-              <mat-select placeholder="Destino" name="estadoDestino" [(ngModel)]="tabelaFreteComponent.tabelaFrete.destino" (selectionChange)="estadoComponent.atualizaListBox()">
-                <mat-option *ngFor="let e of estadoComponent.estados" [value]="e.estadoId">
+              <mat-select placeholder="Destino" name="estadoDestino" [(ngModel)]="tabelaFreteComponent.tabelaFrete.destino">
+                <mat-option *ngFor="let e of estadoComponent.estados" [value]="e">
                   {{e.sigla + " - " + e.descricao}}
                 </mat-option>
               </mat-select>
@@ -318,11 +318,11 @@
               </ng-container>
               <ng-container matColumnDef="origem">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Origem </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.origem}} </mat-cell>>
+                <mat-cell *matCellDef="let element"> {{element.origem.descricao}} </mat-cell>>
               </ng-container>
               <ng-container matColumnDef="destino"> 
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Destino </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.destino}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.destino.descricao}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="valor">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Valor </mat-header-cell>
@@ -363,8 +363,8 @@
         <div class="row">
           <div class="col s12 m6 l6">
             <mat-form-field>
-              <mat-select placeholder="Origem" name="freteOrigem" [(ngModel)]="this.frete.origem" (selectionChange)="estadoComponent.atualizaListBox()">
-                <mat-option *ngFor="let e of estadoComponent.estados" [value]="e.estadoId">
+              <mat-select placeholder="Origem" name="freteOrigem" [(ngModel)]="this.frete.origem" (selectionChange)="this.buscaValorFrete(this.frete.origem, this.frete.destino)">
+                <mat-option *ngFor="let e of estadoComponent.estados" [value]="e">
                   {{e.sigla + " - " + e.descricao}}
                 </mat-option>
               </mat-select>
@@ -372,8 +372,8 @@
           </div>
           <div class="col s12 m6 l6">
             <mat-form-field>
-              <mat-select placeholder="Destino" name="freteDestino" [(ngModel)]="this.frete.destino" (selectionChange)="estadoComponent.atualizaListBox()">
-                <mat-option *ngFor="let e of estadoComponent.estados" [value]="e.estadoId">
+              <mat-select placeholder="Destino" name="freteDestino" [(ngModel)]="this.frete.destino" (selectionChange)="this.buscaValorFrete(this.frete.origem, this.frete.destino)">
+                <mat-option *ngFor="let e of estadoComponent.estados" [value]="e">
                   {{e.sigla + " - " + e.descricao}}
                 </mat-option>
               </mat-select>
@@ -388,12 +388,12 @@
             </div>
             <div class="col s12 m3 l3">
               <mat-form-field>
-                <input matInput placeholder="Peso" type="number" [(ngModel)]="this.frete.peso" required>
+                <input matInput placeholder="Peso" type="number" [(ngModel)]="this.frete.peso" (keyup)="this.calculaTotalFrete($event.target.value)" required>
               </mat-form-field>
             </div>
             <div class="col s12 m3 l3">
               <mat-form-field>
-                <input matInput placeholder="Valor" type="number" [(ngModel)]="tabelaFreteComponent.tabelaFrete.valor" readonly>
+                <input matInput placeholder="Valor" type="number" [(ngModel)]="this.frete.valor" readonly>
               </mat-form-field>
             </div>
             <div class="col s12 m3 l3">
@@ -432,11 +432,11 @@
               </ng-container>
               <ng-container matColumnDef="origem">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Origem </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.origem}} </mat-cell>>
+                <mat-cell *matCellDef="let element"> {{element.origem.descricao}} </mat-cell>>
               </ng-container>
               <ng-container matColumnDef="destino">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Destino </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.destino}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.destino.descricao}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="valor">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Valor </mat-header-cell>
@@ -447,7 +447,7 @@
                 <mat-cell *matCellDef="let element"> {{element.peso}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="valorTotal">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Valor Total </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Total </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.valorTotal}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="editColumn">

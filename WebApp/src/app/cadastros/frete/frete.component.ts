@@ -6,6 +6,7 @@ import { Frete } from '../../models/frete';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { Estado } from '../../models/estado';
 
 @Component({
   selector: 'app-frete',
@@ -43,8 +44,7 @@ export class FreteComponent implements OnInit {
       this.fretes.push(this.frete);
       console.log("Salvou, meu patrão...");
     }else {
-      this.fretes[this.fretes.indexOf(this.freteAtualizar)] = this.frete;
-      console.log("Atualizou, meu patrão...");
+      this.atualizar();
     }
     console.log(this.fretes);
     this.freteAtualizar = null;
@@ -58,6 +58,11 @@ export class FreteComponent implements OnInit {
     this.atualizaTabela();
   }
 
+  atualizar() {
+    this.fretes[this.fretes.indexOf(this.freteAtualizar)] = this.frete;
+    console.log("Atualizou, meu patrão...");
+  }
+
   setFields(freteAtualizar: Frete) {
     this.freteAtualizar = freteAtualizar;
     this.freteAtualizar = new Frete();
@@ -67,7 +72,6 @@ export class FreteComponent implements OnInit {
   limpar() {
     this.frete = new Frete();
     console.log("Limpou, meu patrão...");
-    
   }
 
   aplicarFiltro(valor: string){
@@ -77,8 +81,9 @@ export class FreteComponent implements OnInit {
     console.log("realiza o filtro com "+valor);
     this.dataSource.filterPredicate = (data: Frete, filter: string ) => 
       data.freteId.toString().indexOf(filter) != -1 ||
+      data.peso.toString().indexOf(filter) != -1 ||
+      data.valorTotal.toString().indexOf(filter) != -1 ||
       data.origem.descricao.toLowerCase().indexOf(filter) != -1 ||
-      data.destino.descricao.toLowerCase().indexOf(filter) != -1 ||
       data.destino.descricao.toLowerCase().indexOf(filter) != -1;
   
     this.dataSource.filter = valor;
@@ -88,6 +93,24 @@ export class FreteComponent implements OnInit {
     this.dataSource = new MatTableDataSource<Frete>(this.fretes);
     this.dataSource.paginator = this.paginatorCustom;
     this.dataSource.sort = this.sort;
+  }
+
+  buscaValorFrete(origem: Estado, destino: Estado) {
+    let valor;
+    if(origem != null && destino != null) {
+      this.tabelaFreteComponent.tabelaFretes.forEach(function(item) {
+        if(origem == item.origem && destino == item.destino) {
+          valor = item.valor;
+        }
+      });
+      this.frete.valor = valor;
+    }
+  }
+
+  calculaTotalFrete() {
+    if(this.frete.peso != null && this.frete.valor != null) {
+      this.frete.valorTotal = this.frete.peso * this.frete.valor;
+    }
   }
   
 }

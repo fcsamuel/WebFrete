@@ -15,7 +15,6 @@ export class TabelafreteComponent implements OnInit {
   public tabelaFrete: TabelaFrete = new TabelaFrete();
   public tabelaFreteAtualizar: TabelaFrete = null;
   public tabelaFretes: Array<TabelaFrete> = new Array<TabelaFrete>();
-  public tabelaFreteId: number;
   public isExpandido: number = 0;
   public dataSource: any;
 
@@ -44,15 +43,15 @@ export class TabelafreteComponent implements OnInit {
     this.atualizaTabela();
   }
 
-  atualizar() {
-    this.tabelaFretes[this.tabelaFretes.indexOf(this.tabelaFreteAtualizar)] = this.tabelaFrete;
-    console.log("Atualizou, meu patrão...");
-  }
-
   remover(tabelaFreteRemover: TabelaFrete) {
     this.tabelaFretes.splice(this.tabelaFretes.indexOf(tabelaFreteRemover), 1);
     console.log("Removeu, meu patrão...");
     this.atualizaTabela();
+  }
+
+  atualizar() {
+    this.tabelaFretes[this.tabelaFretes.indexOf(this.tabelaFreteAtualizar)] = this.tabelaFrete;
+    console.log("Atualizou, meu patrão...");
   }
 
   setFields(tabelaFreteAtualizar: TabelaFrete) {
@@ -66,17 +65,19 @@ export class TabelafreteComponent implements OnInit {
     console.log("Limpou, meu patrão...");
   }
 
-  /*aplicarFiltro(valor: string){
+  aplicarFiltro(valor: string){
     valor = valor.trim();
     valor = valor.toLowerCase();
 
     console.log("realiza o filtro com "+valor);
     this.dataSource.filterPredicate = (data: TabelaFrete, filter: string ) => 
       data.tabelaFreteId.toString().indexOf(filter) != -1 ||
-      data..toLowerCase().indexOf(filter) != -1;
+      data.valor.toString().indexOf(filter) != -1 ||
+      data.origem.descricao.toLowerCase().indexOf(filter) != -1 ||
+      data.destino.descricao.toLowerCase().indexOf(filter) != -1;
   
     this.dataSource.filter = valor;
-  }*/
+  }
 
   atualizaTabela() {
     this.dataSource = new MatTableDataSource<TabelaFrete>(this.tabelaFretes);

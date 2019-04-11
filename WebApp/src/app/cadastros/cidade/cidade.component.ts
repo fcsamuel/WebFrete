@@ -15,14 +15,15 @@ import { EstadoComponent } from '../estado/estado.component';
 export class CidadeComponent implements OnInit {
 
   displayedColumns: string[] = ['cidadeId', 'descricao', 'estado', 'editColumn'];
+  displayedColumnsCep: string[] = [];
   
   public cidade: Cidade = new Cidade();
+  public estado: Estado = new Estado();
   public cidades: Array<Cidade> = new Array<Cidade>();
-  public cidadeSelec: Cidade = new Cidade();
   public cidadeAtualizar: Cidade = null;
   public estadoComponent: EstadoComponent = new EstadoComponent;
   public dataSource: any;
-  public palavraChave: string;
+  public dataSourceCep: any;
   public isExpandido: number = 0;
   public isExpandidoCep: number = 0;
 
@@ -35,90 +36,51 @@ export class CidadeComponent implements OnInit {
   ngOnInit() {
   }
 
+  //#region CEP
   setExpandidoCep() {
     this.isExpandidoCep = 1;
   }
 
+  salvarCep() {
+
+  }
+
+  removerCep() {
+
+  }
+
+  atualizarCep() {
+
+  }
+
+  setFieldsCep() {
+
+  }
+
+  limparCep() {
+
+  }
+
+  aplicarFiltroCep() {
+
+  }
+
+  atualizaTabelaCep() {
+    
+  }
+  //#endregion
+  
+  //#region CIDADE
   setExpandido() {
     this.isExpandido = 1;
-    this.carregaDados();
-  }
-
-  carregaCidades() {
-    let cidades;
-    this.estadoComponent.estados.forEach(function (estado) {
-      estado.cidades.forEach(function (cidade) {
-        cidades.push(cidade);
-      });
-    });
-    this.cidades = cidades;
-    console.log(this.cidades);
-  }
-  
-  carregaDados() {
-    this.estadoComponent.estado.estadoId = 1;
-    this.estadoComponent.estado.descricao = "Paraná";
-    this.estadoComponent.estado.sigla = "PR";
-    this.estadoComponent.estados.push(this.estadoComponent.estado);
-
-    this.cidade = new Cidade();
-    this.cidade.cidadeId = 1;
-    this.cidade.descricao = "Toledo";
-    this.cidade.estado = this.estadoComponent.estado;
-    this.cidade.ceps.push("123123123");
-    this.cidade.ceps.push("534534555");
-    this.cidade.ceps.push("132377889");
-    this.cidade.ceps.push("784563527");
-    this.cidade.ceps.push("268854335");
-    this.cidades.push(this.cidade);
-
-    this.cidade = new Cidade();
-    this.cidade.cidadeId = 2;
-    this.cidade.descricao = "Cascavel";
-    this.cidade.estado = this.estadoComponent.estado;
-    this.cidade.ceps.push("554723444");
-    this.cidade.ceps.push("235776987");
-    this.cidade.ceps.push("206040853");
-    this.cidade.ceps.push("208784057");
-    this.cidade.ceps.push("32588-082");
-    this.cidades.push(this.cidade);
-
-    this.estadoComponent.estado = new Estado();
-    this.estadoComponent.estado.estadoId = 2;
-    this.estadoComponent.estado.descricao = "Rio Grande do Sul";
-    this.estadoComponent.estado.sigla = "RS";
-    this.estadoComponent.estados.push(this.estadoComponent.estado);
-
-    this.cidade = new Cidade();
-    this.cidade.cidadeId = 3;
-    this.cidade.descricao = "Porto Alegre";
-    this.cidade.estado = this.estadoComponent.estado;
-    this.cidade.ceps.push("123123123");
-    this.cidade.ceps.push("534534555");
-    this.cidade.ceps.push("132377889");
-    this.cidade.ceps.push("784563527");
-    this.cidade.ceps.push("268854335");
-    this.cidades.push(this.cidade);
-
-    this.cidade = new Cidade();
-    this.cidade.cidadeId = 4;
-    this.cidade.descricao = "Lajeado";
-    this.cidade.estado = this.estadoComponent.estado;
-    this.cidade.ceps.push("554723444");
-    this.cidade.ceps.push("235776987");
-    this.cidade.ceps.push("206040853");
-    this.cidade.ceps.push("208784057");
-    this.cidade.ceps.push("32588-082");
-    this.cidades.push(this.cidade);
-    this.cidade = new Cidade();
-    this.atualizaTabela();
   }
 
   salvar() {
     if(this.cidadeAtualizar == null) {
+      this.cidade.estado = this.estado;
       this.cidades.push(this.cidade);
+      this.estado.cidades.push(this.cidade);
       console.log("Salvou, meu patrão...");
-      console.log(this.cidade.estado.descricao);
     }else {
       this.atualizar();
     }
@@ -130,12 +92,14 @@ export class CidadeComponent implements OnInit {
 
   remover(cidadeRemover: Cidade) {
     this.cidades.splice(this.cidades.indexOf(cidadeRemover), 1);
+    cidadeRemover.estado.cidades.splice(this.cidades.indexOf(cidadeRemover), 1);
     console.log("Removeu, meu patrão...");
     this.atualizaTabela();
   }
 
   atualizar() {
     this.cidades[this.cidades.indexOf(this.cidadeAtualizar)] = this.cidade;
+    this.cidadeAtualizar.estado.cidades[this.cidades.indexOf(this.cidadeAtualizar)] = this.cidade;
     console.log("Atualizou, meu patrão...");
   }
 
@@ -157,7 +121,8 @@ export class CidadeComponent implements OnInit {
     console.log("realiza o filtro com "+valor);
     this.dataSource.filterPredicate = (data: Cidade, filter: string ) => 
       data.cidadeId.toString().indexOf(filter) != -1 ||
-      data.descricao.toLowerCase().indexOf(filter) != -1;
+      data.descricao.toLowerCase().indexOf(filter) != -1 ||
+      data.estado.descricao.toLowerCase().indexOf(filter) != -1;
   
     this.dataSource.filter = valor;
   }
@@ -167,5 +132,6 @@ export class CidadeComponent implements OnInit {
     this.dataSource.paginator = this.paginatorCustom;
     this.dataSource.sort = this.sort;
   }
+  //#endregion
 
 }
