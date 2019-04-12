@@ -23,8 +23,11 @@ export class CidadeComponent implements OnInit {
   public cidadeAtualizar: Cidade = null;
   public estadoComponent: EstadoComponent = new EstadoComponent;
   public dataSource: any;
-  public dataSourceCep: any;
   public isExpandido: number = 0;
+
+  public cep: string;
+  public cepAtualizar: string = null;
+  public dataSourceCep: any;
   public isExpandidoCep: number = 0;
 
   @ViewChild(MatPaginator) paginatorCustom: MatPaginator;
@@ -42,31 +45,55 @@ export class CidadeComponent implements OnInit {
   }
 
   salvarCep() {
-
+    if(this.cepAtualizar = null) {
+      this.cidade.ceps.push(this.cep);
+      console.log("Salvou, meu patrão...");
+    }else {
+      this.atualizarCep();
+    }
+    console.log(this.cidade.ceps);
+    this.cepAtualizar = null;
+    this.cep = "";
+    this.atualizaTabelaCep();
   }
 
-  removerCep() {
-
+  removerCep(cepRemover: string) {
+    this.cidade.ceps.splice(this.cidade.ceps.indexOf(cepRemover), 1);
+    console.log("Removeu, meu patrão...");
+    this.atualizaTabelaCep();
   }
 
   atualizarCep() {
-
+    this.cidade.ceps[this.cidade.ceps.indexOf(this.cepAtualizar)] = this.cep;
+    console.log("Atualizou, meu patrão...");
   }
 
-  setFieldsCep() {
-
+  setFieldsCep(cepAtualizar: string) {
+    this.cepAtualizar = cepAtualizar;
+    this.cep = "";
+    this.cep = cepAtualizar;
   }
 
   limparCep() {
-
+    this.cep = "";
+    console.log("Limpou, meu patrão...");
   }
 
-  aplicarFiltroCep() {
+  aplicarFiltroCep(valor: string) {
+    valor = valor.trim(); // Remove whitespace
+    valor = valor.toLowerCase();
 
+    console.log("realiza o filtro com "+valor);
+    this.dataSourceCep.filterPredicate = (data: string, filter: string ) => 
+      data.toLowerCase().indexOf(filter) != -1;
+  
+    this.dataSource.filter = valor;
   }
 
   atualizaTabelaCep() {
-    
+    this.dataSourceCep = new MatTableDataSource<string>(this.cidade.ceps);
+    this.dataSourceCep.paginator = this.paginatorCustom;
+    this.dataSourceCep.sort = this.sort;
   }
   //#endregion
   
@@ -78,6 +105,7 @@ export class CidadeComponent implements OnInit {
   salvar() {
     if(this.cidadeAtualizar == null) {
       this.cidade.estado = this.estado;
+      this.cidade.ceps = new Array<string>();
       this.cidades.push(this.cidade);
       this.estado.cidades.push(this.cidade);
       console.log("Salvou, meu patrão...");
