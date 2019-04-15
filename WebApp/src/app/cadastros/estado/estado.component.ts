@@ -30,6 +30,10 @@ export class EstadoComponent implements OnInit {
   ngOnInit() {
   }
 
+  atualizaListBoxCidades() {
+    
+  }
+
   setExpandido() {
     this.isExpandido = 1;
   }

@@ -15,7 +15,7 @@ import { EstadoComponent } from '../estado/estado.component';
 export class CidadeComponent implements OnInit {
 
   displayedColumns: string[] = ['cidadeId', 'descricao', 'estado', 'editColumn'];
-  displayedColumnsCep: string[] = [];
+  displayedColumnsCep: string[] = ['cep',  'editColumn']; // 'siglaEstado', 'cidadeDescricao',
   
   public cidade: Cidade = new Cidade();
   public estado: Estado = new Estado();
@@ -45,7 +45,7 @@ export class CidadeComponent implements OnInit {
   }
 
   salvarCep() {
-    if(this.cepAtualizar = null) {
+    if(this.cepAtualizar == null) {
       this.cidade.ceps.push(this.cep);
       console.log("Salvou, meu patrão...");
     }else {
@@ -87,7 +87,7 @@ export class CidadeComponent implements OnInit {
     this.dataSourceCep.filterPredicate = (data: string, filter: string ) => 
       data.toLowerCase().indexOf(filter) != -1;
   
-    this.dataSource.filter = valor;
+    this.dataSourceCep.filter = valor;
   }
 
   atualizaTabelaCep() {
